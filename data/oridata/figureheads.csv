@@ -1,4 +1,4 @@
-#Name,Speed,HP,Capacity,Weight,Level Required,Gold,Wood,Ore,Plasma Rock,Port
+#Name;Speed;HP;Capacity;Weight;Level Required;Gold;Wood;Ore;PlasmaRock;Port
 Dream Catcher,50,1500,0,500,100,750000,500,25,0,Imperial City Port
 Chimera Crest,-50,1400,0,600,96,250000,100,50,4,Imperial City Port
 Raven Crest,40,800,0,500,86,150000,50,40,3,Imperial City Port

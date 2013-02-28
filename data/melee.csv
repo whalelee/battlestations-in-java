@@ -1,4 +1,4 @@
-#Name,Range,Min Damage,Max Damage,Weight,Level Required,Gold,Wood,Ore,Plasma Rock,Port
+#Name;Range;Min Damage;Max Damage;Weight;Level Required;Gold;Wood;Ore;Plasma Rock;Port
 Dark Blade,100,4000,7500,3000,100,0,0,0,25,RARE
 Dragon Pillar,50,3950,5000,3000,95,500000,1000,300,8,Imperial City Port
 Mast Slicer,50,3500,4000,2500,85,230000,700,150,5,Imperial City Port
