@@ -1,5 +1,6 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.io.Console;
 
 /**
  * Boundary class that allows user to login to this application.
@@ -64,6 +65,18 @@ public class LoginMenu {
         } while (choice != 3);
     }
 
+    public String runConsoleToMaskPassword(String message) {
+        Console console = System.console();
+        if (console == null) {
+            System.out.println("Couldn't get Console instance");
+            System.exit(0);
+        }
+
+        
+        char passwordArray[] = console.readPassword(message);
+        return new String(passwordArray);
+    }
+
     /**
      * Get user to provide username and password.
      * If the user logs in successfully, launch the MainMenu.
@@ -75,8 +88,8 @@ public class LoginMenu {
         System.out.print("Enter your username > ");
         String username = sc.nextLine();
 
-        System.out.print("Enter your password > ");
-        String passwordEntered = sc.nextLine();
+        //runCon
+        String passwordEntered = runConsoleToMaskPassword("Enter your password > ");
 
         Player p = appCtrl.authenticatePlayer(username, passwordEntered);
 

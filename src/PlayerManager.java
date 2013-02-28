@@ -43,7 +43,6 @@ public class PlayerManager {
                 int wood          = fileIn.nextInt();
                 int prock         = fileIn.nextInt();
                 String dateInString = fileIn.next();
-                System.out.println(dateInString);
                 SISDate joinedDate = new SISDate(dateInString);
                 Player p = new Player(username, password, playerType.charAt(0));
                 p.setGold(gold);
@@ -141,8 +140,10 @@ public class PlayerManager {
         PrintStream fileOut = null;
         try {
             fileOut = new PrintStream(new FileOutputStream(FILE_NAME, false));
+            fileOut.println("#username;password;playerType;gold;wood;ore;prock;joinedDate");
             for (int i = 0; i < playerList.size(); i++) {
                 Player c = playerList.get(i);
+
                 fileOut.print(c.getName());
                 fileOut.print(",");
                 fileOut.print(c.getPassword());
@@ -159,7 +160,9 @@ public class PlayerManager {
                 fileOut.print(",");
                 String date = c.getJoinedDate().toString();
                 fileOut.print(date);
-                fileOut.println();
+                //if (i < (playerList.size() - 1)) {
+                    fileOut.println();
+                //}
             }
         } catch (FileNotFoundException e) {
             //propagate error
