@@ -95,8 +95,62 @@ public class LoginMenu {
        
     }
 
-    public void processRegister(){
+    public void processRegister() {
+        String passwordEntered = null;
+        String username = null;
+        char playerType = 'a';
 
+        System.out.println("\n== BattleStations :: Registration ==\n");
+
+        
+        boolean userDoesNotExist = false;
+        do{
+            System.out.print("Enter your username > ");
+            username = sc.nextLine();
+            System.out.println();
+
+            if (appCtrl.validateUsername(username)){
+                userDoesNotExist = true;
+            } else{
+                System.out.println("Username has been taken. Choose a new username.");
+            }
+        } while (!userDoesNotExist);
+
+        boolean samePassword = false;
+        do{
+            System.out.print("Enter your password > ");
+            passwordEntered = sc.nextLine();
+            System.out.println();
+            System.out.print("Confirm your password > ");
+            String passwordConfirmed = sc.nextLine();
+
+            if (passwordEntered.equals(passwordConfirmed)){
+                samePassword = true;
+            } else{
+                System.out.println("Password provided are not the same. Please reenter your password.");
+            }
+        } while (!samePassword);
+
+        
+        boolean correctPlayerType = false;
+        do{
+            System.out.print("Choose your player type -- (P)irate / (E)xplorer > ");
+            String userSelectType = sc.nextLine();
+            userSelectType.toLowerCase();
+            playerType = userSelectType.charAt(0);
+
+            if (playerType=='p' || playerType == 'e'){
+                correctPlayerType = true;
+            } else{
+                System.out.println("Please enter  (P)irate / (E)xplorer");
+            }
+        } while (!correctPlayerType);
+        
+        try{
+            appCtrl.addPlayer(username, passwordEntered, playerType);
+        } catch (DataException e){
+            
+        }
     }
 
     public void processExit(){

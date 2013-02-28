@@ -31,15 +31,16 @@ public class PlayerManager {
         try {
             fileIn = new Scanner(new File(FILE_NAME));
             fileIn.useDelimiter(",|\r\n");
-
+            fileIn.next(); //skip the first line
             while (fileIn.hasNext()) {
-                String username = fileIn.next();
-                String password = fileIn.next();
+                
+                String username   = fileIn.next();
+                String password   = fileIn.next();
                 String playerType = fileIn.next();
-                int gold = fileIn.nextInt();
-                int ore = fileIn.nextInt();
-                int wood = fileIn.nextInt();
-                int prock = fileIn.nextInt();
+                int gold          = Integer.parseInt(fileIn.next());
+                int ore           = fileIn.nextInt();
+                int wood          = fileIn.nextInt();
+                int prock         = fileIn.nextInt();
                 Player p = new Player(username, password);
                 p.setPlayerType(playerType.charAt(0));
                 p.setGold(gold);

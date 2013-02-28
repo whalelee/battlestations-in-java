@@ -28,7 +28,17 @@ public class AppController {
          return playerLoggedIn;    
     }
 
-    public void processRegister(String username, String password){
+    public boolean validateUsername(String username){
+        Player p = playerMgr.getPlayerByName(username);
+        if (p==null){
+            return true;
+        }
+        return false;
+
+
+    }
+
+    public void addPlayer(String username, String password, char playerType) throws DataException{
 
     }
 
