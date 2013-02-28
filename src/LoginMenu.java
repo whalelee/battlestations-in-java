@@ -96,9 +96,10 @@ public class LoginMenu {
         if (p!= null){
             String playerName = p.getName();
             System.out.print("\nHi " + playerName + " !");
+            System.out.println();
 
-            //MainMenu m = new MainMenu(appCtrl);
-            //m.readOption();
+            MainMenu m = new MainMenu(appCtrl);
+            m.readOption();
 
         } else{
             System.out.print("Sorry, you entered a wrong username and/or password.");
@@ -161,6 +162,10 @@ public class LoginMenu {
         
         try{
             appCtrl.addPlayer(username, passwordEntered, playerType);
+            System.out.println();
+            System.out.println("Account successfully created.");
+            MainMenu m = new MainMenu(appCtrl);
+            m.readOption();
         } catch (DataException e){
             
         }

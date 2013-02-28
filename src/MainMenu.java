@@ -1,24 +1,23 @@
 import java.util.*;
 
 public class MainMenu{
-	/*
+
     private AppController appCtrl;
     private Scanner sc; 
     private Player p;
-    private Ship ship;
+    private Ship s;
 
     public MainMenu(AppController appCtrl){
         this.appCtrl = appCtrl;
         sc = new Scanner(System.in);
-        p = appCtrl.getPlayer();
+        p = appCtrl.getPlayerLoggedIn();
     }
     public void displayMainMenu() {
-        Player p = appCtrl.
         System.out.println();
         System.out.println("== BattleStations :: Main Menu ==");
-        System.out.println("Captain: + " + p.getUsername());
+        System.out.println("Captain: + " + p.getName());
         System.out.println("AP: " + p.getAP() + "\t\t HP: " + p.getHP());
-        System.out.println("Gold: " + p.getGold() + "\t\t Wood: " + player.getHP());
+        System.out.println("Gold: " + p.getGold() + "\t\t Wood: " + p.getHP());
         System.out.println("Ore: " + p.getOre() + "\t Prock: " + p.getProck());
         System.out.println();
         System.out.println("1. View my vital statistics");
@@ -67,18 +66,18 @@ public class MainMenu{
     }
 
     public void processViewStatistics(){
-        System.out.println();
+        /*System.out.println();
         System.out.println("== BattleStations :: captain ==");
         System.out.println("Craft: " + p.getCraft() +"\tSpeed: " + p.getSpeed() + "(+" + p.getNavigation()+ ")");
         System.out.println("Gunnery: " + p.getGunnery() + "\tStats Pts: " + p.getStatsPts());
         System.out.println("Navigation: " + p.getNavigation());
         System.out.println("Wins: " + p.getWins() + "\tLosses: " + p.getLosses());
         System.out.println("Craft: " + p.getCraft() );
-        System.out.println("== BattleStations :: captain ==");
+        System.out.println("== BattleStations :: captain ==");*/
     }
 
     public void processMyHangar(){
-        System.out.println();
+       /* System.out.println();
         System.out.println("== BattleStations :: My Hangar ==");
         System.out.println("");
         System.out.println();
@@ -100,7 +99,7 @@ public class MainMenu{
         System.out.println("Speed:" + "");
         System.out.println("Capacity:" + "");
         System.out.println("Return to [M]ain | [E]quip | [U]nequip | [R]eport");
-        
+        */
 
     
     }
@@ -113,7 +112,7 @@ public class MainMenu{
 
     }
 
-
-*/
-
+    public void processLogout(){
+        
+    }
 }

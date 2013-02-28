@@ -44,4 +44,8 @@ public class AppController {
 
     }
 
+    public Player getPlayerLoggedIn(){
+        return playerLoggedIn;
+    }
+
 } // AppController
