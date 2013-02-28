@@ -13,7 +13,7 @@ public class AppController {
     public Player authenticatePlayer(String username, String password){
          Player p = playerMgr.getPlayerByCredentials(username, password);
          String logMessage = null;
-         if (p != null && p.getPassword().equals(password)) {
+         if (p != null) {
             // authenticate success
             playerLoggedIn = p;
             logMessage = "Successful Login: Username : \"" + username + "\" Password entered \"" + password + "\"";
