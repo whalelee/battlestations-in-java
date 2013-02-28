@@ -105,7 +105,7 @@ public class SISDate {
      * @return the textual representation of SISDate object
      */
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
         return sdf.format(dateTime);
     }
 }

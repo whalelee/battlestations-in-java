@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.text.*;
 
 /**
  * Data manager class to persist player' information to file.
@@ -41,7 +42,9 @@ public class PlayerManager {
                 int ore           = fileIn.nextInt();
                 int wood          = fileIn.nextInt();
                 int prock         = fileIn.nextInt();
-                SISDate joinedDate = new SISDate(fileIn.next());
+                String dateInString = fileIn.next();
+                System.out.println(dateInString);
+                SISDate joinedDate = new SISDate(dateInString);
                 Player p = new Player(username, password, playerType.charAt(0));
                 p.setGold(gold);
                 p.setOre(ore);
@@ -58,6 +61,8 @@ public class PlayerManager {
             //propagate error
             String message = CLASS_NAME + " class : File " + FILE_NAME + " not found";
             throw new DataException(message);
+        } catch (ParseException e) {
+            throw new DataException(e.getMessage());
         } finally {
             if (fileIn != null) {
                 fileIn.close();
@@ -140,7 +145,19 @@ public class PlayerManager {
                 fileOut.print(c.getName());
                 fileOut.print(",");
                 fileOut.print(c.getPassword());
-                fileOut.print(c.get)
+                fileOut.print(",");
+                fileOut.print(c.getPlayerType());
+                fileOut.print(",");
+                fileOut.print(c.getGold());
+                fileOut.print(",");
+                fileOut.print(c.getWood());
+                fileOut.print(",");
+                fileOut.print(c.getOre());
+                fileOut.print(",");
+                fileOut.print(c.getProck());
+                fileOut.print(",");
+                String date = c.getJoinedDate().toString();
+                fileOut.print(date);
                 fileOut.println();
             }
         } catch (FileNotFoundException e) {

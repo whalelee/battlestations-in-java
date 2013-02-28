@@ -39,6 +39,8 @@ public class AppController {
     }
 
     public void addPlayer(String username, String password, char playerType) throws DataException{
+        Player p = new Player(username, password, playerType);
+        playerMgr.addPlayer(p);
 
     }
 

@@ -66,7 +66,7 @@ public class Player{
 		this.password = password;
 	}
 
-	public char playerType(){
+	public char getPlayerType(){
 		return playerType;
 	}
 

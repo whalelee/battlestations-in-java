@@ -1,5 +1,5 @@
-#username;password;playerType;gold;wood;ore;prock
-yllee,yassword,p,5000,500,50,5
-robert,rassword,e,5000,500,50,5
-peter,password,p,5000,500,50,5
-jasmine,jassword,e,5000,500,50,5
+#username;password;playerType;gold;wood;ore;prock;joinedDate
+yllee,yassword,p,5000,500,50,5,19 Feb 2013
+robert,rassword,e,5000,500,50,5,29 Feb 2012
+peter,password,p,5000,500,50,5,31 Jan 2010
+jasmine,jassword,e,5000,500,50,5,7 July 2011
