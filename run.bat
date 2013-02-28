@@ -1,2 +1,2 @@
-java -cp classes RentalApplication
+java -cp classes BSApp
 @pause
