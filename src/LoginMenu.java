@@ -95,37 +95,6 @@ public class LoginMenu {
        
     }
 
-    public void processRegister() {
-        System.out.println("\n== BattleStations :: Registration ==\n");
-
-        System.out.print("Enter your username > ");
-        String username = sc.nextLine();
-        System.out.println();
-        
-        int samePassword = false;
-        do{
-        	System.out.print("Enter your password > ");
-        	String passwordEntered = sc.nextLine();
-        	System.out.println();
-        	System.out.print("Confirm your password > ");
-        	String passwordConfirmed = sc.nextLine();
-
-        	if (passwordEntered.equals(passwordConfirmed)){
-        		samePassword = true;
-        	} else{
-        		System.out.println("Password provided are not the same. Please reenter your password.");
-        	}
-        } while (!samePassword);
-
-        System.out.print("Choose your player type -- (P)irate / (E)xplorer > ");
-        String userSelectType = sc.nextLine();
-        char playerType = userSelectType.charAt(0);
-
-        appCtrl.processRegister(username, passwordEntered);
-
-       
-    }
-
     public void processExit(){
         System.out.println("== Quit Application ==");
         System.out.println("Bye bye!!!");
