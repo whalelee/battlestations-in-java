@@ -27,11 +27,11 @@ public class PlayerManager {
      * @return the Player object which has the specified user name.
      *         If no such Player exists, returns null.
      */
-    public Player getPlayer(String username) {
+    public Player getPlayer(String username, String password) {
         Player playerToReturn = null;
         for (int i = 0; i < playerList.size(); i++) {
             Player p = playerList.get(i);
-            if (p.getName().equals(username)) {
+            if (p.getName().equals(username) && p.getPassword().equals(password)) {
                 playerToReturn = p;
             }
         }
