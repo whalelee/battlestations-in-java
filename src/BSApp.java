@@ -8,7 +8,7 @@ public class BSApp{
     /**
      * Instantiate the starting boundary class LoginMenu to interact with user.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DataException {
 
         AppController appCtrl = new AppController();
         LoginMenu loginMenu = new LoginMenu(appCtrl);

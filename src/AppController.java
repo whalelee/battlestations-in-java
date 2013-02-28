@@ -5,9 +5,13 @@ public class AppController {
 
     private Player playerLoggedIn;
 
+    public AppController() throws DataException{
+        playerMgr = new PlayerManager();
+    }
+
 
     public Player authenticatePlayer(String username, String password){
-         Player p = playerMgr.getPlayer(username);
+         Player p = playerMgr.getPlayerByCredentials(username, password);
          String logMessage = null;
          if (p != null && p.getPassword().equals(password)) {
             // authenticate success
