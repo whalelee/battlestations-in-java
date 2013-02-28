@@ -10,13 +10,15 @@ public class AppController {
     }
 
 
-    public Player authenticatePlayer(String username, String password){
+    public Player authenticatePlayer(String username, String password) throws DataException{
          Player p = playerMgr.getPlayerByCredentials(username, password);
          String logMessage = null;
          if (p != null) {
             // authenticate success
             playerLoggedIn = p;
             logMessage = "Successful Login: Username : \"" + username + "\" Password entered \"" + password + "\"";
+            playerLoggedIn.resetLoginToday();
+            playerMgr.updatePlayer(playerLoggedIn);
             //appLogger.log("INFO", logMessage, playerLoggedIn.getName());
          } else{
             playerLoggedIn = null;

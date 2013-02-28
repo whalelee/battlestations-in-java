@@ -44,12 +44,17 @@ public class PlayerManager {
                 int prock         = fileIn.nextInt();
                 String dateInString = fileIn.next();
                 SISDate joinedDate = new SISDate(dateInString);
+                int ap = fileIn.nextInt();
+                String lastLoggedInDateInString = fileIn.next();
+                SISDate lastLoggedInDate = new SISDate(lastLoggedInDateInString);
                 Player p = new Player(username, password, playerType.charAt(0));
                 p.setGold(gold);
                 p.setOre(ore);
                 p.setWood(wood);
                 p.setProck(prock);
                 p.setJoinedDate(joinedDate);
+                p.setAP(ap);
+                p.setLastLoggedInDate(lastLoggedInDate);
                 playerList.add(p);
             }
         } catch (InputMismatchException e) {
@@ -103,9 +108,17 @@ public class PlayerManager {
      * @throws DataException Thrown when unable to save player's information to file.
      */
 
-    public void update(Player player){
-        Player p = getPlayerByName(player.getName());
-        p.setName(player.getName());
+    public void updatePlayer(Player player) throws DataException{
+        //update the player list
+        for (int i=0; i<playerList.size(); i++){
+            Player p = playerList.get(i);
+            if (player.getName().equals(p.getName())){
+                playerList.remove(i);
+                playerList.add(i, player);
+            }
+        }
+        save(); //update csv file
+
     }
 
     /**
@@ -158,8 +171,14 @@ public class PlayerManager {
                 fileOut.print(",");
                 fileOut.print(c.getProck());
                 fileOut.print(",");
-                String date = c.getJoinedDate().toString();
-                fileOut.print(date);
+                String joinedDate = c.getJoinedDate().toString();
+                fileOut.print(joinedDate);
+                fileOut.print(",");
+                fileOut.print(c.getAP());
+                fileOut.print(",");
+                String lastLoggedInDate = c.getLastLoggedInDate().toString();
+                fileOut.print(lastLoggedInDate);
+
                 //if (i < (playerList.size() - 1)) {
                     fileOut.println();
                 //}

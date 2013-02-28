@@ -15,10 +15,10 @@ public class MainMenu{
     public void displayMainMenu() {
         System.out.println();
         System.out.println("== BattleStations :: Main Menu ==");
-        System.out.println("Captain: + " + p.getName());
+        System.out.println("Captain: " + p.getName());
         System.out.println("AP: " + p.getAP() + "\t\t HP: " + p.getHP());
         System.out.println("Gold: " + p.getGold() + "\t\t Wood: " + p.getHP());
-        System.out.println("Ore: " + p.getOre() + "\t Prock: " + p.getProck());
+        System.out.println("Ore: " + p.getOre() + "\t\t Prock: " + p.getProck());
         System.out.println();
         System.out.println("1. View my vital statistics");
         System.out.println("2. My hangar");
@@ -113,6 +113,6 @@ public class MainMenu{
     }
 
     public void processLogout(){
-        
+
     }
 }

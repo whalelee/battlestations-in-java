@@ -5,12 +5,12 @@ public class Player{
 	private char playerType;
 	private int level;
 
-	private int ap;
 	private int gold;
 	private int ore;
 	private int hp;
 	private int wood;
 	private int prock;
+	private int ap;
 
 	private int craft;
 	private int speed;
@@ -22,7 +22,8 @@ public class Player{
 	private int losses;
 	private int totalExp;
 
-	private SISDate joinedDate;        //Format : dd/MM/yyyy 00:00
+	private SISDate joinedDate;        //Format : dd MMM yyyy
+	private SISDate lastLoggedInDate;
 
 	private final int DEFAULT_GOLD = 5000;
 	private final int DEFAULT_WOOD = 500;
@@ -40,6 +41,14 @@ public class Player{
 		this.prock = DEFAULT_PROCK;
 
 		this.joinedDate = new SISDate();
+	}
+
+	public SISDate getLastLoggedInDate(){
+		return lastLoggedInDate;
+	}
+
+	public void setLastLoggedInDate(SISDate d){
+		this.lastLoggedInDate = d;
 	}
 
 	public SISDate getJoinedDate(){
@@ -79,6 +88,9 @@ public class Player{
 	}
 
 	public void setAP(int ap){
+		if (ap > 500){
+			ap = 500;
+		}
 		this.ap = ap;
 	}
 
@@ -193,5 +205,23 @@ public class Player{
 
 	public void addLevel(){
 		level++;
+	}
+
+	public void resetLoginToday(){
+		SISDate lastLoggedIn = this.lastLoggedInDate;
+		SISDate today = new SISDate();
+		if (!today.equals(lastLoggedIn)){
+			increaseAP(120);
+		}
+		this.lastLoggedInDate = today;
+
+	}
+
+	public void increaseAP(int increment){
+		int newAP = this.ap + increment;
+		if (newAP > 500){
+			newAP = 500;
+		}
+		this.setAP(newAP);
 	}
 }

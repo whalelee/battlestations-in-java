@@ -90,9 +90,12 @@ public class LoginMenu {
 
         //runCon
         String passwordEntered = runConsoleToMaskPassword("Enter your password > ");
-
-        Player p = appCtrl.authenticatePlayer(username, passwordEntered);
-
+        Player p = null;
+        try{
+            p = appCtrl.authenticatePlayer(username, passwordEntered);
+        } catch (DataException e){
+            System.out.println(e.getMessage());
+        }
         if (p!= null){
             String playerName = p.getName();
             System.out.print("\nHi " + playerName + " !");

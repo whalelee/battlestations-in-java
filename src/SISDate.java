@@ -50,7 +50,14 @@ public class SISDate {
      * @return boolean
      */
     public boolean equals(SISDate anotherSISDate) {
-        return this.dateTime.equals(anotherSISDate.getDateTime());
+
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        cal1.setTime(this.dateTime);
+        cal2.setTime(anotherSISDate.getDateTime());
+        boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                  cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+        return sameDay;
     }
 
     /**
@@ -61,7 +68,17 @@ public class SISDate {
      * @return boolean
      */
     public boolean after(SISDate anotherSISDate) {
-        return this.dateTime.after(anotherSISDate.getDateTime());
+
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        cal1.setTime(this.dateTime);
+        cal2.setTime(anotherSISDate.getDateTime());
+        boolean afterButSameYear = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) > cal2.get(Calendar.DAY_OF_YEAR);
+        
+        boolean afterDiffYear = cal1.get(Calendar.YEAR) > cal2.get(Calendar.YEAR);
+        boolean after = afterButSameYear || afterDiffYear;
+
+        return after;
     }
 
     /**
@@ -72,7 +89,8 @@ public class SISDate {
      * @return boolean
      */
     public boolean before(SISDate anotherSISDate) {
-        return this.dateTime.before(anotherSISDate.getDateTime());
+    
+       return this.dateTime.before(anotherSISDate.getDateTime());
     }
 
     /**
