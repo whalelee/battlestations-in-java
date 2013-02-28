@@ -36,7 +36,16 @@ public class PlayerManager {
                 String username = fileIn.next();
                 String password = fileIn.next();
                 String playerType = fileIn.next();
+                int gold = fileIn.nextInt();
+                int ore = fileIn.nextInt();
+                int wood = fileIn.nextInt();
+                int prock = fileIn.nextInt();
                 Player p = new Player(username, password);
+                p.setPlayerType(playerType.charAt(0));
+                p.setGold(gold);
+                p.setOre(ore);
+                p.setWood(wood);
+                p.setProck(prock);
                 playerList.add(p);
             }
         } catch (InputMismatchException e) {

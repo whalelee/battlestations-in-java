@@ -1,4 +1,5 @@
-yllee,yassword,p
-robert,rassword,e
-peter,password,p
-jasmine,jassword,e
+#username,password,playerType,gold,wood,ore,prock
+yllee,yassword,p,5000,500,50,5
+robert,rassword,e,5000,500,50,5
+peter,password,p,5000,500,50,5
+jasmine,jassword,e,5000,500,50,5
