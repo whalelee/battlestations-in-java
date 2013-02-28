@@ -38,7 +38,6 @@ public class PlayerManager {
                 String playerType = fileIn.next();
                 Player p = new Player(username, password);
                 playerList.add(p);
-                System.out.println(username);
             }
         } catch (InputMismatchException e) {
             //propagate error
