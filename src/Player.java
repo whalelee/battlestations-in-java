@@ -24,13 +24,31 @@ public class Player{
 
 	private SISDate joinedDate;        //Format : dd/MM/yyyy 00:00
 
+	private final int DEFAULT_GOLD = 5000;
+	private final int DEFAULT_WOOD = 500;
+	private final int DEFAULT_ORE = 50;
+	private final int DEFAULT_PROCK = 5;
+
 	//player constructor with username and password
-	public Player(String username, String password){
+	public Player(String username, String password, char playerType){
 		this.username = username;
 		this.password = password;
+		this.playerType = playerType;
+		this.gold = DEFAULT_GOLD;
+		this.wood = DEFAULT_WOOD;
+		this.ore = DEFAULT_ORE;
+		this.prock = DEFAULT_PROCK;
 
+		this.joinedDate = new SISDate();
 	}
 
+	public SISDate getJoinedDate(){
+		return joinedDate;
+	}
+
+	public void setJoinedDate(SISDate d){
+		this.joinedDate = d;
+	}
 
 	public String getName(){
 		return username;

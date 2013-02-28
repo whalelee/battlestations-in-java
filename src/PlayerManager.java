@@ -41,12 +41,13 @@ public class PlayerManager {
                 int ore           = fileIn.nextInt();
                 int wood          = fileIn.nextInt();
                 int prock         = fileIn.nextInt();
-                Player p = new Player(username, password);
-                p.setPlayerType(playerType.charAt(0));
+                SISDate joinedDate = new SISDate(fileIn.next());
+                Player p = new Player(username, password, playerType.charAt(0));
                 p.setGold(gold);
                 p.setOre(ore);
                 p.setWood(wood);
                 p.setProck(prock);
+                p.setJoinedDate(joinedDate);
                 playerList.add(p);
             }
         } catch (InputMismatchException e) {
@@ -121,5 +122,36 @@ public class PlayerManager {
         return playerToReturn;
     }
 
+    public void addPlayer(Player p){
+        playerList.add(p);
+    }
+
+    /**
+     * Save players' information to the file.
+     *
+     * @throws DataException Thrown when unable to save players' information to file.
+     */
+    private void save() throws DataException {
+        PrintStream fileOut = null;
+        try {
+            fileOut = new PrintStream(new FileOutputStream(FILE_NAME, false));
+            for (int i = 0; i < playerList.size(); i++) {
+                Player c = playerList.get(i);
+                fileOut.print(c.getName());
+                fileOut.print(",");
+                fileOut.print(c.getPassword());
+                fileOut.print(c.get)
+                fileOut.println();
+            }
+        } catch (FileNotFoundException e) {
+            //propagate error
+            String message = CLASS_NAME + " class : File " + FILE_NAME + " not found";
+            throw new DataException(message);
+        } finally {
+            if (fileOut != null) {
+                fileOut.close();
+            }
+        }
+    }
 
 }
