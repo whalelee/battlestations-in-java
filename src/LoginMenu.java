@@ -84,8 +84,8 @@ public class LoginMenu {
             String playerName = p.getName();
             System.out.print("\nHi " + playerName + " !");
 
-            MainMenu m = new MainMenu(appCtrl);
-            m.readOption();
+            //MainMenu m = new MainMenu(appCtrl);
+            //m.readOption();
 
         } else{
             System.out.print("Sorry, you entered a wrong username and/or password.");
@@ -93,6 +93,10 @@ public class LoginMenu {
         }
 
        
+    }
+
+    public void processRegister(){
+
     }
 
     public void processExit(){

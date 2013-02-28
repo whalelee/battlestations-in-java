@@ -19,7 +19,7 @@ public class Player{
 	private int statsPts;
 	private boolean iWin; 
 	private int wins;
-	private int lossess;
+	private int losses;
 	private int totalExp;
 
 	private SISDate joinedDate;        //Format : dd/MM/yyyy 00:00

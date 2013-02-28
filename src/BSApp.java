@@ -10,15 +10,13 @@ public class BSApp{
      */
     public static void main(String[] args) {
 
-        try {
-            AppController appCtrl = new AppController();
-            LoginMenu loginMenu = new LoginMenu(appCtrl);
-            loginMenu.readOption();
+        AppController appCtrl = new AppController();
+        LoginMenu loginMenu = new LoginMenu(appCtrl);
+        loginMenu.readOption();
 
-        } catch (DataException e) {
-            System.out.println("We apologize, the Battle Station Application must terminate due to a system error.");
-            System.exit(1);
-        }
+        //System.out.println("We apologize, the Battle Station Application must terminate due to a system error.");
+        //System.exit(1);
+        
 
     }
 }

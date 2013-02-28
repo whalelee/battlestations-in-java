@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class MainMenu{
-	
+	/*
     private AppController appCtrl;
     private Scanner sc; 
     private Player p;
@@ -73,7 +73,7 @@ public class MainMenu{
         System.out.println("Gunnery: " + p.getGunnery() + "\tStats Pts: " + p.getStatsPts());
         System.out.println("Navigation: " + p.getNavigation());
         System.out.println("Wins: " + p.getWins() + "\tLosses: " + p.getLosses());
-        System.out.println("Craft: " + p.getCraft() + );
+        System.out.println("Craft: " + p.getCraft() );
         System.out.println("== BattleStations :: captain ==");
     }
 
@@ -114,6 +114,6 @@ public class MainMenu{
     }
 
 
-
+*/
 
 }
