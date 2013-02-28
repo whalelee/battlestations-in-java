@@ -23,7 +23,7 @@ public class SISDate {
      * @throws ParseException when the format is not valid (valid format : "dd/MM/yyyy HH:mm").
      */
     public SISDate(String strDateTime) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
         dateTime = sdf.parse(strDateTime);
     }
 
