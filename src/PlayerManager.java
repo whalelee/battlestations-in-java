@@ -127,8 +127,9 @@ public class PlayerManager {
         return playerToReturn;
     }
 
-    public void addPlayer(Player p){
+    public void addPlayer(Player p) throws DataException{
         playerList.add(p);
+        save();
     }
 
     /**
