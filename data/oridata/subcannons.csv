@@ -1,4 +1,4 @@
-#Name;Range;Min Damage;Max Damage;Weight;Level Required;Gold;Wood;Ore;Plasma Rock;Port
+#Name,Range,Min Damage,Max Damage,Weight,Level Required,Gold,Wood,Ore,Plasma Rock,Port
 Immolater MK2,450,1500,3000,850,96,150000,300,90,2,Imperial City Port
 Assault Gun MK2,550,1800,2000,650,92,100000,250,80,2,Imperial City Port
 Ripper Gun,400,1500,2000,500,86,70000,200,80,2,Imperial City Port

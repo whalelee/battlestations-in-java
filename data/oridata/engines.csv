@@ -1,4 +1,4 @@
-#Name;Speed;HP;Capacity;Weight;Level Required;Gold;Wood;Ore;Plasma Rock;Port
+#Name,Speed,HP,Capacity,Weight,Level Required,Gold,Wood,Ore,Plasma Rock,Port
 Mega Thrusters,225,0,0,700,100,150000,0,80,6,Imperial City Port
 Plasma Fuel Cells,200,0,0,550,90,90000,0,70,5,Imperial City Port
 Smuggler Drive,175,0,0,350,80,70000,20,60,4,Imperial City Port

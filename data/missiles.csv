@@ -1,4 +1,4 @@
-#Name;Range;Min Damage;Max Damage;Weight;Level Required;Gold;Wood;Ore;Plasma Rock;Port
+#Name,Range,Min Damage,Max Damage,Weight,Level Required,Gold,Wood,Ore,Plasma Rock,Port
 Trident Torpedo MK2,3500,500,2500,800,98,140000,200,100,4,Imperial City Port
 Cluster Bombs MK2,3750,600,2200,750,93,120000,1000,10,4,Imperial City Port
 Stiletto Missile,3400,500,2000,700,88,90000,10,50,4,Imperial City Port

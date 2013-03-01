@@ -1,4 +1,4 @@
-#Name;Speed;HP;Capacity;Weight;Level Required;Gold;Wood;Ore;Plasma Rock;Port
+#Name,Speed,HP,Capacity,Weight,Level Required,Gold,Wood,Ore,Plasma Rock,Port
 Stormbringer Sail,210,0,0,500,95,110000,1500,0,7,Imperial City Port
 Blade Sail,190,0,0,450,85,80000,2000,0,5,Imperial City Port
 Draft Net,170,0,0,300,75,50000,1000,0,3,Imperial City Port

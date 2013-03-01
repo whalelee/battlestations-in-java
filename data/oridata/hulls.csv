@@ -1,4 +1,4 @@
-#Name;Speed;HP;Capacity;Weight;Level Required;Gold;Wood;Ore;Plasma Rock;Port
+#Name,Speed,HP,Capacity,Weight,Level Required,Gold,Wood,Ore,Plasma Rock,Port
 Grand Armor,-100,10000,0,1500,100,250000,0,150,8,Imperial City Port
 Thrust Hull,50,4500,0,750,95,150000,0,75,10,Imperial City Port
 Kraken Shell,-100,8000,500,0,90,130000,0,100,7,Imperial City Port
