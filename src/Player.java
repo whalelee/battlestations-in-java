@@ -7,7 +7,7 @@ public class Player{
 
 	private int gold;
 	private int ore;
-	private int hp;
+	private int currentHP;
 	private int wood;
 	private int prock;
 	private int ap;
@@ -17,8 +17,8 @@ public class Player{
 	private double craft;
 	private double navigation;
 	private double gunnery;
+	private int exp;
 
-	private int speed;
 	private int statsPts;
 	private boolean iWin; 
 	private int wins;
@@ -37,11 +37,12 @@ public class Player{
 	private final double DEFAULT_NAVIGATION = 0;
 	private final double DEFAULT_GUNNERY = 0;
 	private final double DEFAULT_CRAFT = 0;
+	private final int DEFAULT_EXP = 0;
 
 	//player constructor with username and password
 	public Player(String username, String password, char playerType){
-		this.username = username;
-		this.password = password;
+		this.username 	= username;
+		this.password 	= password;
 		this.playerType = playerType;
 		
 		this.gold		= DEFAULT_GOLD;
@@ -53,7 +54,9 @@ public class Player{
 		this.navigation	= DEFAULT_NAVIGATION;
 		this.gunnery	= DEFAULT_GUNNERY;
 		this.craft		= DEFAULT_CRAFT;
-		this.hangar = new Hangar();
+		this.exp		= DEFAULT_EXP;
+
+		this.hangar 	= new Hangar();
 
 
 
@@ -128,11 +131,27 @@ public class Player{
 		this.ore = ore;
 	}
 
-	public int getHP(){
+	public int getCurrentHP(){
+		return currentHP;
+	}
+
+	public void setCurrentHP(int currentHP){
+		this.currentHP = currentHP;
+	}
+
+	public int getTotalHP(){
 		Ship s = this.hangar.getShip();
 		int shipHP = s.getHP();
 		double hpInDouble = ((100 + this.craft)/100) * shipHP;
 		return (int)hpInDouble;
+
+	}
+
+	public int getSpeed(){
+		Ship s = this.hangar.getShip();
+		int shipSpeed = s.getSpeed();
+		double speedInDouble =  shipSpeed + navigation;
+		return (int)speedInDouble;
 
 	}
 
@@ -160,12 +179,17 @@ public class Player{
 		this.craft += statsPts;
 	}
 
-	public int getSpeed(){
-		return speed;
-	}
 
 	public double getGunnery(){
 		return gunnery;
+	}
+
+	public void setCraft(double craft){
+		this.craft = craft;
+	}
+
+	public void setGunnery(double gunnery){
+		this.gunnery = gunnery;
 	}
 
 	public void addGunnery(int statsPts){
@@ -176,9 +200,12 @@ public class Player{
 		return navigation;
 	}
 
+	public void setNavigation(double navigation){
+		this.navigation = navigation;
+	}
+
 	public void addNavigation(int statsPts){
 		this.navigation += statsPts;
-		speed += navigation;
 	}
 
 	public int getStatsPts(){
@@ -209,8 +236,12 @@ public class Player{
 
 	}
 
-	public int totalExp(){
-		return totalExp;
+	public int getExp(){
+		return exp;
+	}
+
+	public void setExp(int exp){
+		this.exp = exp;
 	}
 
 	public void increaseExp(int exp){
@@ -220,6 +251,51 @@ public class Player{
 	public int getLevel(){
 		return level;
 	}
+
+	public int getExpectedLevel(){
+		
+		return this.convertExpToLevel(1);
+ 	}
+
+ 	//recursive function
+ 	public int convertLevelToExp(int level){
+ 		//base case, cannot to down anymore
+ 		if (level <= 1){
+ 			return 0;
+ 		} 
+ 		//cap, cannot go up anymore
+ 		if (level > 100){
+ 			return this.convertLevelToExp(100);
+ 		}
+ 		//recursive steps
+ 		if (level > 1){
+ 			return this.convertLevelToExp(level -1 ) + ((level - 1)*100);
+ 		}
+ 		return 0;
+ 	}
+
+ 	public int convertExpToLevel(int expectedLevel){
+ 		
+ 		if (expectedLevel > 100){
+ 			return 100;
+ 		}
+ 		
+ 		int expAtExpectedLevel = this.convertLevelToExp(expectedLevel);
+ 		
+ 		if(this.exp == expAtExpectedLevel){
+ 			return expectedLevel;
+ 		}
+
+ 		if(this.exp < expAtExpectedLevel){
+ 			return expectedLevel -1;
+ 		}
+
+ 		if(this.exp > expAtExpectedLevel){
+ 			return this.convertExpToLevel(expectedLevel+1);
+ 		}
+ 		return 1;
+
+ 	}
 
 	public void setLevel(int level){
 		this.level = level;

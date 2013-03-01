@@ -36,6 +36,8 @@ public class PlayerManager {
             fileIn.useDelimiter("\r\n");
             fileIn.next(); //skip the first line
             while (fileIn.hasNext()) {
+                //split string data using ","
+                //username,password,playerType,gold,wood,ore,prock,joinedDate,ap,loggedInDate,playerLevel,shipName,craft,navigation,gunnery,currentHP
                 String[] data = fileIn.next().split(",");
                 String username   = data[0];
                 String password   = data[1];
@@ -51,6 +53,11 @@ public class PlayerManager {
                 SISDate lastLoggedInDate = new SISDate(lastLoggedInDateInString);
                 int level = Integer.parseInt(data[10]);
                 String shipName = data[11];
+                double craft = Double.parseDouble(data[12]);
+                double navigation = Double.parseDouble(data[13]);
+                double gunnery = Double.parseDouble(data[14]);
+                int currentHP = Integer.parseInt(data[15]);
+                int exp = Integer.parseInt(data[16]);
 
                 Ship s = this.shipMgr.getShipByName(shipName);
                 //create a hangar with ship gotten
@@ -65,6 +72,12 @@ public class PlayerManager {
                 p.setLastLoggedInDate(lastLoggedInDate);
                 p.setLevel(level);
                 p.setHangar(h);
+                p.setCraft(craft);
+                p.setNavigation(navigation);
+                p.setGunnery(gunnery);
+                p.setCurrentHP(currentHP);
+                p.setExp(exp);
+
 
                 playerList.add(p);
 
@@ -189,7 +202,8 @@ public class PlayerManager {
             fileOut = new PrintStream(new FileOutputStream(FILE_NAME, false));
             
             fileOut.println(firstLine);
-            for (int i = 0; i < playerList.size(); i++) {
+            int totalPlayer = playerList.size();
+            for (int i = 0; i < totalPlayer; i++) {
                 Player c = playerList.get(i);
 
                 fileOut.print(c.getName());
@@ -217,8 +231,19 @@ public class PlayerManager {
                 fileOut.print(c.getLevel());
                 fileOut.print(",");
                 fileOut.print(c.getHangar().getShip().getName());
-
-                fileOut.println();
+                fileOut.print(",");
+                fileOut.print(c.getCraft());
+                fileOut.print(",");
+                fileOut.print(c.getNavigation());
+                fileOut.print(",");
+                fileOut.print(c.getGunnery());
+                fileOut.print(",");
+                fileOut.print(c.getCurrentHP());
+                fileOut.print(",");
+                fileOut.print(c.getExp());
+                if (i<totalPlayer - 1){
+                    fileOut.println(); 
+                }   
             }
         } catch (FileNotFoundException e) {
             //propagate error

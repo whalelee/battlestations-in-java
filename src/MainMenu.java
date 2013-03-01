@@ -16,7 +16,7 @@ public class MainMenu{
         System.out.println();
         System.out.println("== BattleStations :: Main Menu ==");
         System.out.println("Captain: " + p.getName());
-        System.out.println("AP: " + p.getAP() + "\t\t HP: " + p.getHP());
+        System.out.println("AP: " + p.getAP() + "\t\t HP: " + p.getCurrentHP() + " / " + p.getTotalHP());
         System.out.println("Gold: " + p.getGold() + "\t Wood: " + p.getWood());
         System.out.println("Ore: " + p.getOre() + "\t\t Prock: " + p.getProck());
         System.out.println();

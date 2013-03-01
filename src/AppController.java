@@ -64,6 +64,9 @@ public class AppController {
         Hangar h = new Hangar (s);
         // this hangar instantiated belong to this new player.
         p.setHangar(h);
+
+        // set default current hp to ship hp
+        p.setCurrentHP(s.getHP());
         //add this player into list
         playerMgr.addPlayer(p); 
         playerLoggedIn = p;
