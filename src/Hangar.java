@@ -9,5 +9,13 @@ public class Hangar {
 	public Hangar(Ship ship) {
 		this.ship = ship;
 	}
+
+	public Ship getShip(){
+		return ship;
+	}
+
+	public void setShip(Ship s){
+		ship = s;
+	}
 	
 }

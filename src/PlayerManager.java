@@ -31,23 +31,23 @@ public class PlayerManager {
         Scanner fileIn = null;
         try {
             fileIn = new Scanner(new File(FILE_NAME));
-            fileIn.useDelimiter(",|\r\n");
+            fileIn.useDelimiter("\r\n");
             fileIn.next(); //skip the first line
             while (fileIn.hasNext()) {
-                
-                String username   = fileIn.next();
-                String password   = fileIn.next();
-                String playerType = fileIn.next();
-                int gold          = Integer.parseInt(fileIn.next());
-                int ore           = fileIn.nextInt();
-                int wood          = fileIn.nextInt();
-                int prock         = fileIn.nextInt();
-                String dateInString = fileIn.next();
+                String[] data = fileIn.next().split(",");
+                String username   = data[0];
+                String password   = data[1];
+                String playerType = data[2];
+                int gold          = Integer.parseInt(data[3]);
+                int ore           = Integer.parseInt(data[4]);
+                int wood          = Integer.parseInt(data[5]);
+                int prock         = Integer.parseInt(data[6]);
+                String dateInString = data[7];
                 SISDate joinedDate = new SISDate(dateInString);
-                int ap = fileIn.nextInt();
-                String lastLoggedInDateInString = fileIn.next();
+                int ap = Integer.parseInt(data[8]);
+                String lastLoggedInDateInString = data[9];
                 SISDate lastLoggedInDate = new SISDate(lastLoggedInDateInString);
-                int level = fileIn.nextInt();
+                int level = Integer.parseInt(data[10]);
 
 
                 Player p = new Player(username, password, playerType.charAt(0));
@@ -147,8 +147,29 @@ public class PlayerManager {
     public void addPlayer(Player p) throws DataException{
         playerList.add(p);
         save();
+        
     }
 
+    private String readFirstLine() throws DataException{
+        Scanner fileIn = null;
+        try {
+            fileIn = new Scanner(new File(FILE_NAME));
+            fileIn.useDelimiter("\r\n");
+            return fileIn.next(); //skip the first line
+        } catch (InputMismatchException e) {
+            //propagate error
+            String message = "Reading error in File \"" + FILE_NAME + "\". Invalid double format.";
+            throw new DataException(message);
+        } catch (FileNotFoundException e) {
+            //propagate error
+            String message = CLASS_NAME + " class : File " + FILE_NAME + " not found";
+            throw new DataException(message);
+        } finally {
+            if (fileIn != null) {
+                fileIn.close();
+            }
+        }
+    }
     /**
      * Save players' information to the file.
      *
@@ -157,8 +178,10 @@ public class PlayerManager {
     private void save() throws DataException {
         PrintStream fileOut = null;
         try {
+            String firstLine = readFirstLine();
             fileOut = new PrintStream(new FileOutputStream(FILE_NAME, false));
-            fileOut.println("#username;password;playerType;gold;wood;ore;prock;joinedDate;ap;loggedInDate;playerLevel");
+            
+            fileOut.println(firstLine);
             for (int i = 0; i < playerList.size(); i++) {
                 Player c = playerList.get(i);
 

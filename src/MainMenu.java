@@ -24,7 +24,7 @@ public class MainMenu{
         System.out.println("2. My hangar");
         System.out.println("3. Le Shippe Shoppe");
         System.out.println("4. PVP");
-        System.out.println("5. Exit");
+        System.out.println("5. Logout");
         System.out.println();
         System.out.print("Enter your choice > ");
     }
@@ -113,6 +113,9 @@ public class MainMenu{
     }
 
     public void processLogout(){
-
+        appCtrl.logOutPlayer();
+        p = null;
+        LoginMenu lm = new LoginMenu(appCtrl);
+        lm.readOption();
     }
 }

@@ -12,9 +12,11 @@ public class Player{
 	private int prock;
 	private int ap;
 
+	private Hangar hangar;
 	private double craft;
 	private double navigation;
 	private double gunnery;
+
 
 	private int speed;
 	private int statsPts;
@@ -35,7 +37,6 @@ public class Player{
 	private final double DEFAULT_NAVIGATION = 0;
 	private final double DEFAULT_GUNNERY = 0;
 	private final double DEFAULT_CRAFT = 0;
-	private final Hangar DEFAULT_HANGAR = new Hangar();
 
 	//player constructor with username and password
 	public Player(String username, String password, char playerType){
@@ -52,7 +53,9 @@ public class Player{
 		this.navigation	= DEFAULT_NAVIGATION;
 		this.gunnery	= DEFAULT_GUNNERY;
 		this.craft		= DEFAULT_CRAFT;
-		this.hangar = DEFAULT_HANGAR;
+		this.hangar = new Hangar();
+
+
 
 		this.joinedDate = new SISDate();
 		this.lastLoggedInDate = new SISDate();
@@ -126,11 +129,10 @@ public class Player{
 	}
 
 	public int getHP(){
-		return hp;
-	}
+		Ship s = this.hangar.getShip();
+		int shipHP = s.getHP();
+		return int(((100 + this.craft)/100) * shipHP);
 
-	public void setHP(int hp){
-		this.hp = hp;
 	}
 
 	public int getWood(){
@@ -225,6 +227,15 @@ public class Player{
 	public void addLevel(){
 		level++;
 	}
+
+	public Hangar getHangar(){
+		return this.hangar;
+	}
+
+	public void setHangar(Hangar h){
+		this.hangar = h;
+	}
+
 
 	public void resetLoginToday(){
 		SISDate lastLoggedIn = this.lastLoggedInDate;

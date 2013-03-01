@@ -2,11 +2,14 @@ import java.util.*;
 
 public class AppController {
     private PlayerManager playerMgr;
+    private ShipManager shipMgr;
 
     private Player playerLoggedIn;
 
     public AppController() throws DataException{
         playerMgr = new PlayerManager();
+        shipMgr = new ShipManager();
+
     }
 
 
@@ -36,8 +39,10 @@ public class AppController {
             return true;
         }
         return false;
+    }
 
-
+    public void logOutPlayer(){
+        playerLoggedIn = null;
     }
     /**
      * Get a player given user name.
@@ -48,8 +53,17 @@ public class AppController {
      * @thorws when needed
      */
     public void addPlayer(String username, String password, char playerType) throws DataException{
+        //instantiate new player with no hangar & no ship
         Player p = new Player(username, password, playerType);
-        playerMgr.addPlayer(p);
+        //instantiate a brand new ship ("windrider") for new player 
+        Ship s = shipMgr.getShipByName("Windrider");
+        //instantiate new Hangar that has "Windrider" ship
+        Hangar h = new Hangar (s);
+        // this hangar instantiated belong to this new player.
+        p.setHangar(h);
+        //add this player into list
+        playerMgr.addPlayer(p); 
+        playerLoggedIn = p;
 
     }
 
@@ -61,7 +75,7 @@ public class AppController {
      *         If no such Player exists, returns null.
      */
     public Ship getShip(String shipName) throws DataException{
-        
+        return null;
 
     }
 
