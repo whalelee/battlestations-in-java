@@ -33,51 +33,58 @@ public class PartManager{
      * @throws DataException Thrown when unable to load ship' information from file.
      */
 	public PartManager() throws DataException{
-		engineList = new ArrayList<Weapon>();
-		subcannonList = new ArrayList<Weapon>();
-		missileList = new ArrayList<Weapon>();
-		meleeList = new ArrayList<Weapon>();
+		engineList = new ArrayList<Part>();
+		figureheadList = new ArrayList<Part>();
+		sailList = new ArrayList<Part>();
+		hullList = new ArrayList<Part>();
+		stabilizerList = new ArrayList<Part>();
 		
         load();
 	}
 
-	public ArrayList<Weapon> getWeaponList(int weaponClass){
-		switch(weaponClass){
-			case CANNONS:
+	public ArrayList<Part> getPartList(int partClass){
+		switch(partClass){
+			case ENGINES:
 				return engineList;
-			case MELEES:
-				return meleeList;
-			case MISSILES:
-				return missileList;
-			case SUBCANNONS:
-				return subcannonList;
+			case HULLS:
+				return hullList;
+			case SAILS:
+				return sailList;
+			case FIGUREHEADS:
+				return figureheadList;
+			case STABILIZERS:
+				return stabilizerList;
 		}
 		return engineList;
 	}
 
 	public void load() throws DataException{
-		loadMissile();
-		loadCannon();
-		loadSubcannon();
-		loadMelee();
+		loadThisPartClass(ENGINES);
+		loadThisPartClass(HULLS);
+		loadThisPartClass(SAILS);
+		loadThisPartClass(FIGUREHEADS);
+		loadThisPartClass(STABILIZERS);
 	}
 
-	public void loadThisWeaponClass(String weaponClass) throws DataException{
+	public void loadThisPartClass(int partClass) throws DataException{
 		String filename = "";
-		ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
+		ArrayList<Part> weaponList = new ArrayList<Part>();
 
-		switch(weaponClass) {
-			case "missile" :
-				filename = MISSILE_FILE_NAME;
+		switch(partClass) {
+			case SAILS :
+				filename = SAIL_FILE_NAME;
 				break;
-			case "cannon" :
-				filename = CANNON_FILE_NAME;
+			case ENGINES :
+				filename = ENGINE_FILE_NAME;
 				break;
-			case "subcannon" :
-				filename = SUBCANNON_FILE_NAME;
+			case FIGUREHEADS :
+				filename = FIGUREHEAD_FILE_NAME;
 				break;
-			case "melee" :
-				filename = MELEE_FILE_NAME;
+			case HULLS :
+				filename = HULL_FILE_NAME;
+				break;
+			case STABILIZERS :
+				filename = STABILIZER_FILE_NAME;
 				break;
 		}
 
@@ -86,13 +93,13 @@ public class PartManager{
             fileIn = new Scanner(new File(filename));
             fileIn.useDelimiter("\r\n");
             fileIn.next(); //skip the first line
-            //#Ship,Speed,HP,Slots,Capacity,Level Required,Gold,Wood,Ore,Plasma Rock,Port
+            //#Name,Speed,HP,Capacity,Weight,Level Required,Gold,Wood,Ore,Plasma Rock,Port
             while (fileIn.hasNext()) {
                 String[] data   = fileIn.next().split(",");
                	String name = data[0];
-				int range = Integer.parseInt(data[1]);  
-				int minDamage = Integer.parseInt(data[2]);  
-				int maxDamage = Integer.parseInt(data[3]);  
+				int speed = Integer.parseInt(data[1]);  
+				int hp = Integer.parseInt(data[2]);  
+				int capacity = Integer.parseInt(data[3]);  
 				int weight = Integer.parseInt(data[4]);  
 				int levelReq = Integer.parseInt(data[5]);  
 				int gold = Integer.parseInt(data[6]);  
@@ -102,11 +109,11 @@ public class PartManager{
 				String port = data[10];  
 
                 //set data to the Ship object
-                Weapon p = new Weapon();
+                Part p = new Part();
                 p.setName(name);
-                p.setRange(range);
-                p.setMinDamage(minDamage);
-                p.setMaxDamage(maxDamage);
+                p.setSpeed(speed);
+                p.setHP(hp);
+                p.setCapacity(capacity);
                 p.setWeight(weight);
                 p.setLevelReq(levelReq);
                 p.setGold(gold);
@@ -115,18 +122,21 @@ public class PartManager{
                 p.setProck(prock);
                 p.setPort(port);          
 
-                switch(weaponClass) {
-					case "missile" :
-						missileList.add(p);
+                switch(partClass) {
+					case SAILS :
+						sailList.add(p);
 						break;
-					case "cannon" :
+					case ENGINES :
 						engineList.add(p);
 						break;
-					case "subcannon" :
-						subcannonList.add(p);
+					case FIGUREHEADS :
+						figureheadList.add(p);
 						break;
-					case "melee" :
-						meleeList.add(p);
+					case HULLS :
+						hullList.add(p);
+						break;
+					case STABILIZERS :
+						stabilizerList.add(p);
 						break;
 				}
             }
@@ -143,21 +153,5 @@ public class PartManager{
                 fileIn.close();
             }
         }
-	}
-
-	public void loadMissile() throws DataException{
-        loadThisWeaponClass("missile");
-	}
-
-	public void loadCannon() throws DataException{
-		loadThisWeaponClass("cannon");
-	}
-
-	public void loadSubcannon() throws DataException{
-		loadThisWeaponClass("subcannon");
-	}
-
-	public void loadMelee() throws DataException{
-		loadThisWeaponClass("melee");
 	}
 }
