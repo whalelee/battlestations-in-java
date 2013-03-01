@@ -151,11 +151,11 @@ public class MainMenu{
                     ArmoryMenu m = new ArmoryMenu(appCtrl);
                     m.readOption();
                     break;
-                /*case "3":
+                case "3":
                     validChoice = true;
-                    PartMenu m = new PartMenu(appCtrl);
-                    m.readOption();
-                    break;*/
+                    PartMenu p = new PartMenu(appCtrl);
+                    p.readOption();
+                    break;
                 default:
                     System.out.println("Invalid Input!");
 

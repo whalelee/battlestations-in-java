@@ -112,7 +112,7 @@ public class ArmoryMenu{
         do {
             displayArmoryMenu();
             try {
-                choice = sc.nextLine();
+                choice = sc.nextLine().trim().toUpperCase();
                 System.out.println();
                 if(choice.equals("M")){
                 	validChoice = true;

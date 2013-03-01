@@ -13,7 +13,7 @@ public class PartManager{
 	private ArrayList<Part> stabilizerList;
     
     private final String ENGINE_FILE_NAME = "data/engines.csv";
-    private final String FIGUREHEAD_FILE_NAME = "data/figurehead.csv";
+    private final String FIGUREHEAD_FILE_NAME = "data/figureheads.csv";
     private final String SAIL_FILE_NAME = "data/sails.csv";
     private final String HULL_FILE_NAME = "data/hulls.csv";
     private final String STABILIZER_FILE_NAME = "data/stabilizers.csv";

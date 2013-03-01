@@ -4,6 +4,7 @@ public class AppController {
     private PlayerManager playerMgr;
     private ShipManager shipMgr;
     private WeaponManager weaponMgr;
+    private PartManager partMgr;
 
     private Player playerLoggedIn;
     private ArrayList<Ship> shipList;
@@ -12,13 +13,26 @@ public class AppController {
     private ArrayList<Weapon> missileList;
     private ArrayList<Weapon> meleeList;
 
+    private ArrayList<Part> engineList;
+    private ArrayList<Part> figureheadList;
+    private ArrayList<Part> hullList;
+    private ArrayList<Part> sailList;
+    private ArrayList<Part> stabilizerList;
+
     private final int CANNONS = 1;
     private final int MELEES = 2;
     private final int MISSILES = 3;
     private final int SUBCANNONS = 4;
 
+    private final int ENGINES = 1;
+    private final int FIGUREHEADS = 2;
+    private final int SAILS = 3;
+    private final int HULLS = 4;
+    private final int STABILIZERS = 5;
+
     public AppController() throws DataException{
         weaponMgr = new WeaponManager();
+        partMgr = new PartManager();
         shipMgr = new ShipManager();
         playerMgr = new PlayerManager(shipMgr);
         shipList = shipMgr.getAll();
@@ -26,6 +40,12 @@ public class AppController {
         subcannonList = weaponMgr.getWeaponList(SUBCANNONS);
         missileList = weaponMgr.getWeaponList(MISSILES);
         meleeList = weaponMgr.getWeaponList(MELEES);
+
+        engineList = partMgr.getPartList(ENGINES);
+        figureheadList = partMgr.getPartList(FIGUREHEADS);
+        sailList = partMgr.getPartList(SAILS);
+        hullList = partMgr.getPartList(HULLS);
+        stabilizerList = partMgr.getPartList(STABILIZERS);
         
     }
 
@@ -120,5 +140,23 @@ public class AppController {
         }
         return cannonList;
     }
+
+     public ArrayList<Part> getPartList(int partClass){
+        switch(partClass){
+            case ENGINES :
+                return engineList;
+            case SAILS :
+                return sailList;
+            case FIGUREHEADS :
+                return figureheadList;
+            case HULLS :
+                return hullList;
+            case STABILIZERS :
+                return stabilizerList;
+        }
+        return engineList;
+    }
+
+
 
 } // AppController
