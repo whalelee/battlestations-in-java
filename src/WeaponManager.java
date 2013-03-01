@@ -6,10 +6,10 @@ import java.text.*;
  * Data manager class to persist player' information to file.
  */
 public class WeaponManager{
-	private ArrayList<Cannon> cannonList;
-	private ArrayList<Subcannon> subcannonList;
-	private ArrayList<Missile> missileList;
-	private ArrayList<Melee> meleeList;
+	private ArrayList<Weapon> cannonList;
+	private ArrayList<Weapon> subcannonList;
+	private ArrayList<Weapon> missileList;
+	private ArrayList<Weapon> meleeList;
     private final String MISSILE_FILE_NAME = "data/missiles.csv";
     private final String CANNON_FILE_NAME = "data/cannons.csv";
     private final String MELEE_FILE_NAME = "data/melee.csv";
@@ -23,10 +23,10 @@ public class WeaponManager{
      * @throws DataException Thrown when unable to load ship' information from file.
      */
 	public WeaponManager(){
-		cannonList = new ArrayList<Cannon>();
-		subcannonList = new ArrayList<Subcannon>();
-		missileList = new ArrayList<Missile>();
-		meleeList = new ArrayList<Melee>();
+		cannonList = new ArrayList<Weapon>();
+		subcannonList = new ArrayList<Weapon>();
+		missileList = new ArrayList<Weapon>();
+		meleeList = new ArrayList<Weapon>();
         load();
 	}
 
@@ -37,19 +37,87 @@ public class WeaponManager{
 		loadMelee();
 	}
 
-	public void loadMissile(){
+	public void loadThisWeaponClass(String weaponClass) throws DataException{
+		String filename = "";
+		ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
 
+		switch(weaponClass) {
+	/*		case "missile" :
+				filename = MISSILE_FILE_NAME;
+				break;
+			case "cannon" :
+				filename = CANNON_FILE_NAME;
+				break;*/
+		}
+
+		Scanner fileIn = null;
+        try {
+            fileIn = new Scanner(new File(filename));
+            fileIn.useDelimiter("\r\n");
+            fileIn.next(); //skip the first line
+            //#Ship,Speed,HP,Slots,Capacity,Level Required,Gold,Wood,Ore,Plasma Rock,Port
+            while (fileIn.hasNext()) {
+                String[] data   = fileIn.next().split(",");
+               	String name = data[0];
+				int range = Integer.parseInt(data[1]);  
+				int minDamage = Integer.parseInt(data[2]);  
+				int maxDamage = Integer.parseInt(data[3]);  
+				int weight = Integer.parseInt(data[4]);  
+				int levelReq = Integer.parseInt(data[5]);  
+				int gold = Integer.parseInt(data[6]);  
+				int wood = Integer.parseInt(data[7]);  
+				int ore = Integer.parseInt(data[8]);  
+				int prock = Integer.parseInt(data[9]);  
+				String port = data[10];  
+
+                //set data to the Ship object
+                Weapon p = new Weapon();
+                p.setName(name);
+                p.setRange(hp);
+                p.setMinDamage(slots);
+           /*     p.setCapacity(capacity);
+                p.setLevelReq(levelReq);
+                p.setGold(gold);
+                p.setOre(ore);
+                p.setWood(wood);
+                p.setProck(prock);
+                p.setPort(port);*/
+
+                switch(weaponClass) {
+					/*case "missile" :
+						missileList.add(p);
+						break;
+					*/
+				}
+            }
+        } catch (InputMismatchException e) {
+            //propagate error
+            String message = "Reading error in File \"" + filename + "\". Invalid double format.";
+            throw new DataException(message);
+        } catch (FileNotFoundException e) {
+            //propagate error
+            String message = CLASS_NAME + " class : File " + filename + " not found";
+            throw new DataException(message);
+        } finally {
+            if (fileIn != null) {
+                fileIn.close();
+            }
+        }
+	}
+
+	public void loadMissile() throws DataException{
+        loadThisWeaponClass("missile");
 	}
 
 	public void loadCannon(){
-
+		loadThisWeaponClass("change this");
 	}
 
 	public void loadSubcannon(){
-
+		loadThisWeaponClass("change this");
 	}
 
 	public void loadMelee(){
-
+		loadThisWeaponClass("change this");
 	}
 }
