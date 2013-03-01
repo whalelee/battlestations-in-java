@@ -17,7 +17,7 @@ public class MainMenu{
         System.out.println("== BattleStations :: Main Menu ==");
         System.out.println("Captain: " + p.getName());
         System.out.println("AP: " + p.getAP() + "\t\t HP: " + p.getHP());
-        System.out.println("Gold: " + p.getGold() + "\t\t Wood: " + p.getHP());
+        System.out.println("Gold: " + p.getGold() + "\t Wood: " + p.getWood());
         System.out.println("Ore: " + p.getOre() + "\t\t Prock: " + p.getProck());
         System.out.println();
         System.out.println("1. View my vital statistics");
@@ -66,14 +66,14 @@ public class MainMenu{
     }
 
     public void processViewStatistics(){
-        /*System.out.println();
+        System.out.println();
         System.out.println("== BattleStations :: captain ==");
         System.out.println("Craft: " + p.getCraft() +"\tSpeed: " + p.getSpeed() + "(+" + p.getNavigation()+ ")");
         System.out.println("Gunnery: " + p.getGunnery() + "\tStats Pts: " + p.getStatsPts());
         System.out.println("Navigation: " + p.getNavigation());
         System.out.println("Wins: " + p.getWins() + "\tLosses: " + p.getLosses());
         System.out.println("Craft: " + p.getCraft() );
-        System.out.println("== BattleStations :: captain ==");*/
+        System.out.println("== BattleStations :: captain ==");
     }
 
     public void processMyHangar(){

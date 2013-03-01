@@ -39,10 +39,29 @@ public class AppController {
 
 
     }
-
+    /**
+     * Get a player given user name.
+     *
+     * @param userName User name to search for.
+     * @return the Player object which has the specified user name.
+     *         If no such Player exists, returns null.
+     * @thorws when needed
+     */
     public void addPlayer(String username, String password, char playerType) throws DataException{
         Player p = new Player(username, password, playerType);
         playerMgr.addPlayer(p);
+
+    }
+
+       /**
+     * Get a player given user name.
+     *
+     * @param userName User name to search for.
+     * @return the Player object which has the specified user name.
+     *         If no such Player exists, returns null.
+     */
+    public Ship getShip(String shipName) throws DataException{
+        
 
     }
 

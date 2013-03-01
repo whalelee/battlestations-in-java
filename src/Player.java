@@ -12,10 +12,11 @@ public class Player{
 	private int prock;
 	private int ap;
 
-	private int craft;
+	private double craft;
+	private double navigation;
+	private double gunnery;
+
 	private int speed;
-	private int navigation;
-	private int gunnery;
 	private int statsPts;
 	private boolean iWin; 
 	private int wins;
@@ -29,18 +30,32 @@ public class Player{
 	private final int DEFAULT_WOOD = 500;
 	private final int DEFAULT_ORE = 50;
 	private final int DEFAULT_PROCK = 5;
+	private final int DEFAULT_LEVEL = 1;
+	private final int DEFAULT_AP = 120;
+	private final double DEFAULT_NAVIGATION = 0;
+	private final double DEFAULT_GUNNERY = 0;
+	private final double DEFAULT_CRAFT = 0;
+	private final Hangar DEFAULT_HANGAR = new Hangar();
 
 	//player constructor with username and password
 	public Player(String username, String password, char playerType){
 		this.username = username;
 		this.password = password;
 		this.playerType = playerType;
-		this.gold = DEFAULT_GOLD;
-		this.wood = DEFAULT_WOOD;
-		this.ore = DEFAULT_ORE;
-		this.prock = DEFAULT_PROCK;
+		
+		this.gold		= DEFAULT_GOLD;
+		this.wood		= DEFAULT_WOOD;
+		this.ore		= DEFAULT_ORE;
+		this.prock		= DEFAULT_PROCK;
+		this.level		= DEFAULT_LEVEL;
+		this.ap			= DEFAULT_AP;
+		this.navigation	= DEFAULT_NAVIGATION;
+		this.gunnery	= DEFAULT_GUNNERY;
+		this.craft		= DEFAULT_CRAFT;
+		this.hangar = DEFAULT_HANGAR;
 
 		this.joinedDate = new SISDate();
+		this.lastLoggedInDate = new SISDate();
 	}
 
 	public SISDate getLastLoggedInDate(){
@@ -134,7 +149,7 @@ public class Player{
 		this.prock = prock;
 	}
 
-	public int getCraft(){
+	public double getCraft(){
 		return craft;
 	}
 
@@ -146,7 +161,7 @@ public class Player{
 		return speed;
 	}
 
-	public int getGunnery(){
+	public double getGunnery(){
 		return gunnery;
 	}
 
@@ -154,7 +169,7 @@ public class Player{
 		this.gunnery += statsPts;
 	}
 
-	public int getNavigation(){
+	public double getNavigation(){
 		return navigation;
 	}
 
@@ -201,6 +216,10 @@ public class Player{
 
 	public int getLevel(){
 		return level;
+	}
+
+	public void setLevel(int level){
+		this.level = level;
 	}
 
 	public void addLevel(){

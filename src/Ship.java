@@ -1,5 +1,10 @@
-public class Ship{
+public class Ship {
 	private int speed;
-	private int capacity;
+	private String name;
+
+	public Ship() {
+		this.name = 'Windrider';
+	}
+
 	
 }

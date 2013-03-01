@@ -9,7 +9,7 @@ public class PlayerManager {
 
     // attribute
     private ArrayList<Player> playerList;
-    private final String FILE_NAME = "data/player.csv";
+    private final String FILE_NAME = "data/players.csv";
     private final String CLASS_NAME = "PlayerManager";
 
     /**
@@ -47,6 +47,9 @@ public class PlayerManager {
                 int ap = fileIn.nextInt();
                 String lastLoggedInDateInString = fileIn.next();
                 SISDate lastLoggedInDate = new SISDate(lastLoggedInDateInString);
+                int level = fileIn.nextInt();
+
+
                 Player p = new Player(username, password, playerType.charAt(0));
                 p.setGold(gold);
                 p.setOre(ore);
@@ -55,6 +58,8 @@ public class PlayerManager {
                 p.setJoinedDate(joinedDate);
                 p.setAP(ap);
                 p.setLastLoggedInDate(lastLoggedInDate);
+                p.setLevel(level);
+
                 playerList.add(p);
             }
         } catch (InputMismatchException e) {
@@ -153,7 +158,7 @@ public class PlayerManager {
         PrintStream fileOut = null;
         try {
             fileOut = new PrintStream(new FileOutputStream(FILE_NAME, false));
-            fileOut.println("#username;password;playerType;gold;wood;ore;prock;joinedDate");
+            fileOut.println("#username;password;playerType;gold;wood;ore;prock;joinedDate;ap;loggedInDate;playerLevel");
             for (int i = 0; i < playerList.size(); i++) {
                 Player c = playerList.get(i);
 
@@ -178,10 +183,10 @@ public class PlayerManager {
                 fileOut.print(",");
                 String lastLoggedInDate = c.getLastLoggedInDate().toString();
                 fileOut.print(lastLoggedInDate);
+                fileOut.print(",");
+                fileOut.print(c.getLevel());
 
-                //if (i < (playerList.size() - 1)) {
-                    fileOut.println();
-                //}
+                fileOut.println();
             }
         } catch (FileNotFoundException e) {
             //propagate error
