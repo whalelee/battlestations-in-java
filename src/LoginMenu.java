@@ -124,7 +124,6 @@ public class LoginMenu {
         do{
             System.out.print("Enter your username > ");
             username = sc.nextLine();
-            System.out.println();
 
             if (appCtrl.validateUsername(username)){
                 userDoesNotExist = true;
@@ -137,7 +136,6 @@ public class LoginMenu {
         do{
             System.out.print("Enter your password > ");
             passwordEntered = sc.nextLine();
-            System.out.println();
             System.out.print("Confirm your password > ");
             String passwordConfirmed = sc.nextLine();
 
@@ -152,14 +150,13 @@ public class LoginMenu {
         boolean correctPlayerType = false;
         do{
             System.out.print("Choose your player type -- (P)irate / (E)xplorer > ");
-            String userSelectType = sc.nextLine();
-            userSelectType.toUpperCase();
+            String userSelectType = sc.nextLine().trim().toUpperCase();
             playerType = userSelectType.charAt(0);
 
             if (playerType=='P' || playerType == 'E'){
                 correctPlayerType = true;
             } else{
-                System.out.println("Please enter  (P)irate / (E)xplorer");
+                System.out.println("Invalid player type! please choose (P)irate / (E)xplorer!");
             }
         } while (!correctPlayerType);
         

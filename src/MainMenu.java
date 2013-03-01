@@ -66,16 +66,33 @@ public class MainMenu{
     }
 
     public void processViewStatistics(){
-        System.out.println();
-        System.out.println("== BattleStations :: captain ==");
-        System.out.println("Craft: " + p.getCraft() +"\tSpeed: " + p.getSpeed() + "(+" + p.getNavigation()+ ")");
-        System.out.println("Gunnery: " + p.getGunnery() + "\tStats Pts: " + p.getStatsPts());
-        System.out.println("Navigation: " + p.getNavigation());
-        System.out.println("Wins: " + p.getWins() + "\tLosses: " + p.getLosses());
-        System.out.println("Total Exp: " + p.getCraft() );
-        System.out.println("Joined on: " + p.getJoinedDate());
-        System.out.println();
-        System.out.println("Return to [M]ain | [A]llocate Stats Pts > ");
+        String choice = null;
+        boolean validChoice = false;
+        do{
+            System.out.println();
+            System.out.println("== BattleStations :: captain ==");
+            System.out.println("Craft: " + p.getCraft() +"\tSpeed: " + p.getSpeed() + "(+" + p.getNavigation()+ ")");
+            System.out.println("Gunnery: " + p.getGunnery() + "\tStats Pts: " + p.getStatsPts());
+            System.out.println("Navigation: " + p.getNavigation());
+            System.out.println("Wins: " + p.getWins() + "\tLosses: " + p.getLosses());
+            System.out.println("Total Exp: " + p.getCraft() );
+            System.out.println("Joined on: " + p.getJoinedDate());
+            System.out.println();
+            System.out.println("Return to [M]ain | [A]llocate Stats Pts > ");
+            choice = sc.nextLine().trim().toUpperCase();
+            if(choice.equals("M") || choice.equals("A")){
+                validChoice = true;
+                if(choice.equals("M")){
+                    processBackToMainMenu();
+                } else{
+                    processAllocateStatsPts();
+                }
+
+            }else{
+                System.out.println("Invalid Input!");
+                validChoice =false;
+            }
+        } while(!validChoice);
     }
 
     public void processMyHangar(){
@@ -111,12 +128,13 @@ public class MainMenu{
         boolean validChoice = false;
 
         do{
+            System.out.println();
             System.out.println("== BattleStations :: Le Shippe Shoppe ==");
             System.out.println("1. Le Shipyard");
             System.out.println("2. Le Armory");
             System.out.println("3. Le Part");
             System.out.println();
-            System.out.println("Return to [M]ain | Enter weapon/part > ");
+            System.out.print("Return to [M]ain | Enter weapon/part > ");
             choice = sc.nextLine().toUpperCase().trim();
             switch(choice){
                 case "M":
@@ -130,7 +148,7 @@ public class MainMenu{
                     break;
                /* case "2":
                     validChoice = true;
-                    ArmoryMenu m = new Armory(appCtrl);
+                    ArmoryMenu m = new ArmoryMenu(appCtrl);
                     m.readOption();
                     break;
                 case "3":
@@ -145,6 +163,10 @@ public class MainMenu{
         } while(!validChoice); // close do
     }
 
+    public void processAllocateStatsPts(){
+
+    }
+    
     public void processPVP(){
 
     }

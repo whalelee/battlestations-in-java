@@ -3,12 +3,14 @@ import java.util.*;
 public class AppController {
     private PlayerManager playerMgr;
     private ShipManager shipMgr;
+    private WeaponManager weaponMgr;
 
     private Player playerLoggedIn;
     private ArrayList<Ship> shipList;
 
     public AppController() throws DataException{
-        shipMgr = new ShipManager();
+        weaponMgr = new WeaponManager();
+        hipMgr = new ShipManager();
         shipList = shipMgr.getAll();
         playerMgr = new PlayerManager(shipMgr);
         

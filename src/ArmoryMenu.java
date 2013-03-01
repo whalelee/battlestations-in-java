@@ -2,19 +2,19 @@ import java.io.*;
 import java.util.*;
 import java.text.*;
 
-public class ShipShopMenu{
+public class ArmoryMenu{
 	
 	private AppController appCtrl;
 	private Scanner sc;
 	private ArrayList<Ship> shipList;
 
-	public ShipShopMenu(AppController appCtrl){
+	public ArmoryMenu(AppController appCtrl){
 		this.appCtrl = appCtrl;
 		sc = new Scanner(System.in);
 		shipList = appCtrl.getShips();
 	}
 
-	public void displayShipyardMenu(){
+	public void displayArmoryMenu(){
         System.out.println();
         System.out.println("== BattleStations :: Le Shipyard ==");
         for(int i = 1 ; i <= shipList.size() ; i++){
@@ -30,7 +30,7 @@ public class ShipShopMenu{
 
     }
 
-    public void displayShipDetail(int index){
+    public void displayArmoryDetail(int index){
 		String choice = null;
 		boolean validChoice = false;
 		do{
@@ -58,7 +58,7 @@ public class ShipShopMenu{
 	        	if(choice.equals("M")){
 	        		processBackToMainMenu();
 	        	} else{
-	        		processBuyShip();
+	        		processBuyArmory();
 	        	}
 
 	        }else{
@@ -86,7 +86,7 @@ public class ShipShopMenu{
                 	int input = Integer.parseInt(choice);
                 	if (input >= 1 || input <= shipList.size()){
                 		validChoice = true;
-                		displayShipDetail(input);
+                		displayArmoryDetail(input);
                 	}
                 }
             System.out.println("Invalid Input!");
@@ -99,7 +99,7 @@ public class ShipShopMenu{
 
     }
 
-    public void processBuyShip(){
+    public void processBuyArmory(){
 
     }
 
