@@ -5,10 +5,13 @@ public class AppController {
     private ShipManager shipMgr;
 
     private Player playerLoggedIn;
+    private ArrayList<Ship> shipList;
 
     public AppController() throws DataException{
-        playerMgr = new PlayerManager();
         shipMgr = new ShipManager();
+        shipList = shipMgr.getAll();
+        playerMgr = new PlayerManager(shipMgr);
+        
 
     }
 

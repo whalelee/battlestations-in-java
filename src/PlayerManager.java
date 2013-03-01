@@ -9,6 +9,7 @@ public class PlayerManager {
 
     // attribute
     private ArrayList<Player> playerList;
+    private ShipManager shipMgr;
     private final String FILE_NAME = "data/players.csv";
     private final String CLASS_NAME = "PlayerManager";
 
@@ -17,7 +18,8 @@ public class PlayerManager {
      *
      * @throws DataException Thrown when unable to load player' information from file.
      */
-    public PlayerManager() throws DataException {
+    public PlayerManager(ShipManager shipMgr) throws DataException {
+        this.shipMgr = shipMgr;
         playerList = new ArrayList<Player>();
         load();
     }
@@ -27,7 +29,7 @@ public class PlayerManager {
      *
      * @throws DataException Thrown when unable to load players' information from file.
      */
-    private void load() throws DataException {
+    public void load() throws DataException {
         Scanner fileIn = null;
         try {
             fileIn = new Scanner(new File(FILE_NAME));
@@ -48,8 +50,11 @@ public class PlayerManager {
                 String lastLoggedInDateInString = data[9];
                 SISDate lastLoggedInDate = new SISDate(lastLoggedInDateInString);
                 int level = Integer.parseInt(data[10]);
+                String shipName = data[11];
 
-
+                Ship s = this.shipMgr.getShipByName(shipName);
+                //create a hangar with ship gotten
+                Hangar h = new Hangar(s);
                 Player p = new Player(username, password, playerType.charAt(0));
                 p.setGold(gold);
                 p.setOre(ore);
@@ -59,8 +64,10 @@ public class PlayerManager {
                 p.setAP(ap);
                 p.setLastLoggedInDate(lastLoggedInDate);
                 p.setLevel(level);
+                p.setHangar(h);
 
                 playerList.add(p);
+
             }
         } catch (InputMismatchException e) {
             //propagate error
@@ -208,6 +215,8 @@ public class PlayerManager {
                 fileOut.print(lastLoggedInDate);
                 fileOut.print(",");
                 fileOut.print(c.getLevel());
+                fileOut.print(",");
+                fileOut.print(c.getHangar().getShip().getName());
 
                 fileOut.println();
             }

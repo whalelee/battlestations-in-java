@@ -13,10 +13,10 @@ public class Player{
 	private int ap;
 
 	private Hangar hangar;
+
 	private double craft;
 	private double navigation;
 	private double gunnery;
-
 
 	private int speed;
 	private int statsPts;
@@ -131,7 +131,8 @@ public class Player{
 	public int getHP(){
 		Ship s = this.hangar.getShip();
 		int shipHP = s.getHP();
-		return int(((100 + this.craft)/100) * shipHP);
+		double hpInDouble = ((100 + this.craft)/100) * shipHP;
+		return (int)hpInDouble;
 
 	}
 

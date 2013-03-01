@@ -33,8 +33,8 @@ public class ShipManager{
                 String[] data   = fileIn.next().split(",");
                 String shipName = data[0];
                 int speed       = Integer.parseInt(data[1]);
-                int hp          = Integer.parseInt(data[2];
-                int slots       = Integer.parseInt(data[3];
+                int hp          = Integer.parseInt(data[2]);
+                int slots       = Integer.parseInt(data[3]);
                 int capacity    = Integer.parseInt(data[4]);
                 int levelReq    = Integer.parseInt(data[5]); 
                 int gold        = Integer.parseInt(data[6]);
@@ -46,10 +46,10 @@ public class ShipManager{
                 //set data to the Ship object
                 Ship p = new Ship();
                 p.setName(shipName);
-                p.setHP(hp)
+                p.setHP(hp);
                 p.setSlots(slots);
                 p.setCapacity(capacity);
-                p.setLevelReq(levelReq)
+                p.setLevelReq(levelReq);
                 p.setGold(gold);
                 p.setOre(ore);
                 p.setWood(wood);
@@ -66,8 +66,6 @@ public class ShipManager{
             //propagate error
             String message = CLASS_NAME + " class : File " + FILE_NAME + " not found";
             throw new DataException(message);
-        } catch (ParseException e) {
-            throw new DataException(e.getMessage());
         } finally {
             if (fileIn != null) {
                 fileIn.close();
@@ -75,14 +73,14 @@ public class ShipManager{
         }
     }
 
-    private ArrayList<Ship> getAll(){
+    public ArrayList<Ship> getAll(){
     	return shipList;
     }
 
-    private Ship getShipByName(String shipName){
+    public Ship getShipByName(String shipName){
     	Ship ship = null;
-    	for(s : shipList ){
-    		if(s.getName.equals(shipName)){
+    	for(Ship s : shipList ){
+    		if(s.getName().equals(shipName)){
     			ship = s;
     		}
     	}
