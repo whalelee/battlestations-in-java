@@ -83,7 +83,7 @@ public class MainMenu{
             if(choice.equals("M") || choice.equals("A")){
                 validChoice = true;
                 if(choice.equals("M")){
-                    processBackToMainMenu();
+                    readOption();
                 } else{
                     processAllocateStatsPts();
                 }
@@ -143,15 +143,15 @@ public class MainMenu{
                     break;
                 case "1":
                     validChoice = true; 
-                    ShipShopMenu m = new ShipShopMenu(appCtrl);
-                    m.readOption();
+                    ShipShopMenu a = new ShipShopMenu(appCtrl);
+                    a.readOption();
                     break;
-               /* case "2":
+                case "2":
                     validChoice = true;
                     ArmoryMenu m = new ArmoryMenu(appCtrl);
                     m.readOption();
                     break;
-                case "3":
+                /*case "3":
                     validChoice = true;
                     PartMenu m = new PartMenu(appCtrl);
                     m.readOption();

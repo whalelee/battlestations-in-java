@@ -10,6 +10,7 @@ public class WeaponManager{
 	private ArrayList<Weapon> subcannonList;
 	private ArrayList<Weapon> missileList;
 	private ArrayList<Weapon> meleeList;
+    
     private final String MISSILE_FILE_NAME = "data/missiles.csv";
     private final String CANNON_FILE_NAME = "data/cannons.csv";
     private final String MELEE_FILE_NAME = "data/melee.csv";
@@ -17,12 +18,18 @@ public class WeaponManager{
 
     private final String CLASS_NAME = "WeaponManager";
 
+
+    private final int CANNONS = 1;
+    private final int MELEES = 2;
+    private final int MISSILES = 3;
+    private final int SUBCANNONS = 4;
+
     /**
      * no argument constructor
      *
      * @throws DataException Thrown when unable to load ship' information from file.
      */
-	public WeaponManager(){
+	public WeaponManager() throws DataException{
 		cannonList = new ArrayList<Weapon>();
 		subcannonList = new ArrayList<Weapon>();
 		missileList = new ArrayList<Weapon>();
@@ -30,7 +37,21 @@ public class WeaponManager{
         load();
 	}
 
-	public void load(){
+	public ArrayList<Weapon> getWeaponList(int weaponClass){
+		switch(weaponClass){
+			case CANNONS:
+				return cannonList;
+			case MELEES:
+				return meleeList;
+			case MISSILES:
+				return missileList;
+			case SUBCANNONS:
+				return subcannonList;
+		}
+		return cannonList;
+	}
+
+	public void load() throws DataException{
 		loadMissile();
 		loadCannon();
 		loadSubcannon();
@@ -42,12 +63,18 @@ public class WeaponManager{
 		ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
 
 		switch(weaponClass) {
-	/*		case "missile" :
+			case "missile" :
 				filename = MISSILE_FILE_NAME;
 				break;
 			case "cannon" :
 				filename = CANNON_FILE_NAME;
-				break;*/
+				break;
+			case "subcannon" :
+				filename = SUBCANNON_FILE_NAME;
+				break;
+			case "melee" :
+				filename = MELEE_FILE_NAME;
+				break;
 		}
 
 		Scanner fileIn = null;
@@ -73,21 +100,30 @@ public class WeaponManager{
                 //set data to the Ship object
                 Weapon p = new Weapon();
                 p.setName(name);
-                p.setRange(hp);
-                p.setMinDamage(slots);
-           /*     p.setCapacity(capacity);
+                p.setRange(range);
+                p.setMinDamage(minDamage);
+                p.setMaxDamage(maxDamage);
+                p.setWeight(weight);
                 p.setLevelReq(levelReq);
                 p.setGold(gold);
-                p.setOre(ore);
                 p.setWood(wood);
+                p.setOre(ore);
                 p.setProck(prock);
-                p.setPort(port);*/
+                p.setPort(port);          
 
                 switch(weaponClass) {
-					/*case "missile" :
+					case "missile" :
 						missileList.add(p);
 						break;
-					*/
+					case "cannon" :
+						cannonList.add(p);
+						break;
+					case "subcannon" :
+						subcannonList.add(p);
+						break;
+					case "melee" :
+						meleeList.add(p);
+						break;
 				}
             }
         } catch (InputMismatchException e) {
@@ -109,15 +145,15 @@ public class WeaponManager{
         loadThisWeaponClass("missile");
 	}
 
-	public void loadCannon(){
-		loadThisWeaponClass("change this");
+	public void loadCannon() throws DataException{
+		loadThisWeaponClass("cannon");
 	}
 
-	public void loadSubcannon(){
-		loadThisWeaponClass("change this");
+	public void loadSubcannon() throws DataException{
+		loadThisWeaponClass("subcannon");
 	}
 
-	public void loadMelee(){
-		loadThisWeaponClass("change this");
+	public void loadMelee() throws DataException{
+		loadThisWeaponClass("melee");
 	}
 }

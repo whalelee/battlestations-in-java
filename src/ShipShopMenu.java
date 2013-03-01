@@ -15,6 +15,7 @@ public class ShipShopMenu{
 	}
 
 	public void displayShipyardMenu(){
+        
         System.out.println();
         System.out.println("== BattleStations :: Le Shipyard ==");
         for(int i = 1 ; i <= shipList.size() ; i++){
@@ -27,7 +28,7 @@ public class ShipShopMenu{
         }
         System.out.println();
         System.out.print("Return to [M]ain | Enter number > ");
-
+            
     }
 
     public void displayShipDetail(int index){

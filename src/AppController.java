@@ -7,14 +7,26 @@ public class AppController {
 
     private Player playerLoggedIn;
     private ArrayList<Ship> shipList;
+    private ArrayList<Weapon> cannonList;
+    private ArrayList<Weapon> subcannonList;
+    private ArrayList<Weapon> missileList;
+    private ArrayList<Weapon> meleeList;
+
+    private final int CANNONS = 1;
+    private final int MELEES = 2;
+    private final int MISSILES = 3;
+    private final int SUBCANNONS = 4;
 
     public AppController() throws DataException{
         weaponMgr = new WeaponManager();
-        hipMgr = new ShipManager();
-        shipList = shipMgr.getAll();
+        shipMgr = new ShipManager();
         playerMgr = new PlayerManager(shipMgr);
+        shipList = shipMgr.getAll();
+        cannonList = weaponMgr.getWeaponList(CANNONS);
+        subcannonList = weaponMgr.getWeaponList(SUBCANNONS);
+        missileList = weaponMgr.getWeaponList(MISSILES);
+        meleeList = weaponMgr.getWeaponList(MELEES);
         
-
     }
 
 
@@ -93,6 +105,20 @@ public class AppController {
 
     public Player getPlayerLoggedIn(){
         return playerLoggedIn;
+    }
+
+    public ArrayList<Weapon> getWeaponList(int weaponClass){
+        switch(weaponClass){
+            case CANNONS:
+                return cannonList;
+            case MELEES:
+                return meleeList;
+            case MISSILES:
+                return missileList;
+            case SUBCANNONS:
+                return subcannonList;
+        }
+        return cannonList;
     }
 
 } // AppController
