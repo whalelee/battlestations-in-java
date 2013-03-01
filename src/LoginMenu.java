@@ -153,10 +153,10 @@ public class LoginMenu {
         do{
             System.out.print("Choose your player type -- (P)irate / (E)xplorer > ");
             String userSelectType = sc.nextLine();
-            userSelectType.toLowerCase();
+            userSelectType.toUpperCase();
             playerType = userSelectType.charAt(0);
 
-            if (playerType=='p' || playerType == 'e'){
+            if (playerType=='P' || playerType == 'E'){
                 correctPlayerType = true;
             } else{
                 System.out.println("Please enter  (P)irate / (E)xplorer");

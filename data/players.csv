@@ -1,5 +1,5 @@
 username,password,playerType,gold,wood,ore,prock,joinedDate,ap,loggedInDate,playerLevel,shipName,craft,navigation,gunnery,currentHP,exp
-yllee,yassword,p,5000,50,500,5,19 Feb 2013,121,01 Mar 2013,1,Windrider,1.5,0.0,0.0,100,0
-robert,rassword,e,5000,50,500,5,29 Feb 2012,29,27 Feb 2013,1,Windrider,0.0,1.5,0.0,200,0
-peter,password,p,5000,50,500,5,31 Jan 2010,120,01 Mar 2013,1,Windrider,1.5,1.0,1.0,300,0
-jasmine,jassword,e,5000,50,500,5,07 Jul 2011,0,25 Feb 2013,1,Windrider,0.0,1.5,0.0,400,0
+yllee,yassword,p,5000,500,50,5,19 Feb 2013,121,01 Mar 2013,1,Windrider,1.5,0.0,0.0,100,0
+robert,rassword,e,5000,500,50,5,29 Feb 2012,29,27 Feb 2013,1,Windrider,0.0,1.5,0.0,200,0
+peter,password,p,5000,500,50,5,31 Jan 2010,120,01 Mar 2013,1,Windrider,1.5,1.0,1.0,300,0
+jasmine,jassword,e,5000,500,50,5,07 Jul 2011,0,25 Feb 2013,1,Windrider,0.0,1.5,0.0,400,0

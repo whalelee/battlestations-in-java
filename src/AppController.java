@@ -85,6 +85,10 @@ public class AppController {
 
     }
 
+    public ArrayList<Ship> getShips(){
+        return shipList;
+    }
+
     public Player getPlayerLoggedIn(){
         return playerLoggedIn;
     }

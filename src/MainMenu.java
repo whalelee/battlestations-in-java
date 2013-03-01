@@ -72,8 +72,10 @@ public class MainMenu{
         System.out.println("Gunnery: " + p.getGunnery() + "\tStats Pts: " + p.getStatsPts());
         System.out.println("Navigation: " + p.getNavigation());
         System.out.println("Wins: " + p.getWins() + "\tLosses: " + p.getLosses());
-        System.out.println("Craft: " + p.getCraft() );
-        System.out.println("== BattleStations :: captain ==");
+        System.out.println("Total Exp: " + p.getCraft() );
+        System.out.println("Joined on: " + p.getJoinedDate());
+        System.out.println();
+        System.out.println("Return to [M]ain | [A]llocate Stats Pts > ");
     }
 
     public void processMyHangar(){
@@ -105,7 +107,42 @@ public class MainMenu{
     }
 
     public void processShopping(){
+        String choice = null;
+        boolean validChoice = false;
 
+        do{
+            System.out.println("== BattleStations :: Le Shippe Shoppe ==");
+            System.out.println("1. Le Shipyard");
+            System.out.println("2. Le Armory");
+            System.out.println("3. Le Part");
+            System.out.println();
+            System.out.println("Return to [M]ain | Enter weapon/part > ");
+            choice = sc.nextLine().toUpperCase().trim();
+            switch(choice){
+                case "M":
+                    validChoice = true;
+                    this.readOption();
+                    break;
+                case "1":
+                    validChoice = true; 
+                    ShipShopMenu m = new ShipShopMenu(appCtrl);
+                    m.readOption();
+                    break;
+               /* case "2":
+                    validChoice = true;
+                    ArmoryMenu m = new Armory(appCtrl);
+                    m.readOption();
+                    break;
+                case "3":
+                    validChoice = true;
+                    PartMenu m = new PartMenu(appCtrl);
+                    m.readOption();
+                    break;*/
+                default:
+                    System.out.println("Invalid Input!");
+
+            }//close switch
+        } while(!validChoice); // close do
     }
 
     public void processPVP(){
