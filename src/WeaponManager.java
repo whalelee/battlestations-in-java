@@ -10,6 +10,8 @@ public class WeaponManager{
 	private ArrayList<Weapon> subcannonList;
 	private ArrayList<Weapon> missileList;
 	private ArrayList<Weapon> meleeList;
+
+	private ArrayList< ArrayList<Weapon>> weaponList;
     
     private final String MISSILE_FILE_NAME = "data/missiles.csv";
     private final String CANNON_FILE_NAME = "data/cannons.csv";
@@ -34,6 +36,7 @@ public class WeaponManager{
 		subcannonList = new ArrayList<Weapon>();
 		missileList = new ArrayList<Weapon>();
 		meleeList = new ArrayList<Weapon>();
+		weaponList = new ArrayList< ArrayList<Weapon>>();
         load();
 	}
 
@@ -56,6 +59,10 @@ public class WeaponManager{
 		loadCannon();
 		loadSubcannon();
 		loadMelee();
+		weaponList.add(missileList);
+		weaponList.add(cannonList);
+		weaponList.add(meleeList);
+		weaponList.add(subcannonList);
 	}
 
 	public void loadThisWeaponClass(String weaponClass) throws DataException{
@@ -155,5 +162,16 @@ public class WeaponManager{
 
 	public void loadMelee() throws DataException{
 		loadThisWeaponClass("melee");
+	}
+
+	public Weapon getWeaponByName(String name){
+		for(ArrayList<Weapon> list: weaponList){
+			for(Weapon w: list){
+				if(w.getName().equals(name)){
+					return w;
+				}
+			}
+		}
+		return null;
 	}
 }

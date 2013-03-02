@@ -66,6 +66,40 @@ public class PartManager{
 		loadThisPartClass(STABILIZERS);
 	}
 
+	public Part getFigureheadByName(String name){
+		return getPartByTypeAndName(FIGUREHEADS, name);
+	}
+
+	public Part getPartByTypeAndName(int partType, String name){
+		
+		ArrayList<Part> partList = new ArrayList<Part>();
+
+		switch(partType){
+			case FIGUREHEADS:
+				partList = figureheadList;
+				break;
+			case ENGINES:
+				partList = engineList;
+				break;
+			case HULLS:
+				partList = hullList;
+				break;
+			case SAILS:
+				partList = sailList;
+				break;
+			case STABILIZERS:
+				partList = stabilizerList;
+				break;
+		}
+		
+		for(Part p: partList){
+			if(p.getName().equals(name)){
+				return p;
+			}
+		}
+		return null;
+	}
+
 	public void loadThisPartClass(int partClass) throws DataException{
 		String filename = "";
 		ArrayList<Part> weaponList = new ArrayList<Part>();

@@ -13,6 +13,7 @@ public class Player{
 	private int ap;
 
 	private Hangar hangar;
+	private Storage storage;
 
 	private double craft;
 	private double navigation;
@@ -57,7 +58,7 @@ public class Player{
 		this.exp		= DEFAULT_EXP;
 
 		this.hangar 	= new Hangar();
-
+		this.storage 	= new Storage();
 
 
 		this.joinedDate = new SISDate();
@@ -311,6 +312,14 @@ public class Player{
 
 	public void setHangar(Hangar h){
 		this.hangar = h;
+	}
+
+	public Storage getStorage(){
+		return this.storage;
+	}
+
+	public void setStorage(Storage s){
+		this.storage = s;
 	}
 
 

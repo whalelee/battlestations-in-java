@@ -7,6 +7,7 @@ public class AppController {
     private PartManager partMgr;
 
     private Player playerLoggedIn;
+    
     private ArrayList<Ship> shipList;
     private ArrayList<Weapon> cannonList;
     private ArrayList<Weapon> subcannonList;
@@ -34,7 +35,7 @@ public class AppController {
         weaponMgr = new WeaponManager();
         partMgr = new PartManager();
         shipMgr = new ShipManager();
-        playerMgr = new PlayerManager(shipMgr);
+        playerMgr = new PlayerManager(shipMgr, partMgr, weaponMgr);
         shipList = shipMgr.getAll();
         cannonList = weaponMgr.getWeaponList(CANNONS);
         subcannonList = weaponMgr.getWeaponList(SUBCANNONS);

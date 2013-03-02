@@ -10,16 +10,27 @@ public class PlayerManager {
     // attribute
     private ArrayList<Player> playerList;
     private ShipManager shipMgr;
+    private PartManager partMgr;
+    private WeaponManager weaponMgr;
     private final String FILE_NAME = "data/players.csv";
     private final String CLASS_NAME = "PlayerManager";
+
+    private final int ENGINES = 1;
+    private final int FIGUREHEADS = 2;
+    private final int SAILS = 3;
+    private final int HULLS = 4;
+    private final int STABILIZERS = 5;
+    private final int WEAPONS = 6;
 
     /**
      * no argument constructor
      *
      * @throws DataException Thrown when unable to load player' information from file.
      */
-    public PlayerManager(ShipManager shipMgr) throws DataException {
+    public PlayerManager(ShipManager shipMgr, PartManager partMgr, WeaponManager weaponMgr) throws DataException {
+        this.partMgr = partMgr;
         this.shipMgr = shipMgr;
+        this.weaponMgr = weaponMgr;
         playerList = new ArrayList<Player>();
         load();
     }
@@ -59,9 +70,61 @@ public class PlayerManager {
                 int currentHP = Integer.parseInt(data[15]);
                 int exp = Integer.parseInt(data[16]);
 
+                Storage storage = new Storage();
+
+                String storageFigureheads = data[17];
+                String[] figureheads = storageFigureheads.split(":");
+                for(String fig : figureheads) {
+                    
+                    Part part = this.partMgr.getPartByTypeAndName(FIGUREHEADS,fig);
+                    if (part!=null)
+                        storage.addToFigureheadList(part);
+                }
+
+                String storageSails = data[18];
+                String[] sails = storageSails.split(":");
+                for(String sai : sails) {
+                    Part sail = this.partMgr.getPartByTypeAndName(SAILS,sai);
+                    if (sail!=null)
+                        storage.addToSailList(sail);
+                }
+
+                String storageStabilizers = data[19];
+                String[] stabilizers = storageStabilizers.split(":");
+                for(String sta : stabilizers) {
+                    Part stabilizer = this.partMgr.getPartByTypeAndName(STABILIZERS,sta);
+                    if (stabilizer!=null)
+                        storage.addToStabilizerList(stabilizer);
+                }
+
+                String storageHull = data[20];
+                String[] hulls = storageHull.split(":");
+                for(String hul : hulls) {
+                    Part hull = this.partMgr.getPartByTypeAndName(HULLS,hul);
+                    if (hull!=null)
+                        storage.addToHullList(hull);
+                }
+
+                String storageEngine = data[21];
+                String[] engines = storageEngine.split(":");
+                for(String eng : engines) {
+                    Part engine = this.partMgr.getPartByTypeAndName(ENGINES,eng);
+                    if (engine!=null)
+                        storage.addToEngineList(engine);
+                }
+
+                String storageWeapon = data[22];
+                String[] weapons = storageWeapon.split(":");
+                for(String wea : weapons) {
+                    Weapon weapon = this.weaponMgr.getWeaponByName(wea);
+                    if (weapon!=null)
+                        storage.addToWeaponList(weapon);
+                }
+
                 Ship s = this.shipMgr.getShipByName(shipName);
                 //create a hangar with ship gotten
                 Hangar h = new Hangar(s);
+                
                 Player p = new Player(username, password, playerType.charAt(0));
                 p.setGold(gold);
                 p.setOre(ore);
@@ -77,6 +140,7 @@ public class PlayerManager {
                 p.setGunnery(gunnery);
                 p.setCurrentHP(currentHP);
                 p.setExp(exp);
+                p.setStorage(storage);
 
 
                 playerList.add(p);
@@ -98,6 +162,8 @@ public class PlayerManager {
             }
         }
     }
+
+
 
     /**
      * Get a player given user name.
@@ -241,6 +307,21 @@ public class PlayerManager {
                 fileOut.print(c.getCurrentHP());
                 fileOut.print(",");
                 fileOut.print(c.getExp());
+                fileOut.print(",");
+                fileOut.print(c.getStorage().getListToString(FIGUREHEADS));
+                fileOut.print(",");
+                fileOut.print(c.getStorage().getListToString(SAILS));
+                fileOut.print(",");
+                fileOut.print(c.getStorage().getListToString(STABILIZERS));
+                fileOut.print(",");
+                fileOut.print(c.getStorage().getListToString(HULLS));
+                fileOut.print(",");
+                fileOut.print(c.getStorage().getListToString(ENGINES));
+                fileOut.print(",");
+                fileOut.print(c.getStorage().getWeaponListToString());
+                fileOut.print(",");
+
+
                 if (i<totalPlayer - 1){
                     fileOut.println(); 
                 }   

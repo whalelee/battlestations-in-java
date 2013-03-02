@@ -204,7 +204,8 @@ public class PartMenu{
     }
 
     public void processBuyPart(){
-
+        Storage s = new Storage();
+        
     }
 
     public void processBackToMainMenu(){

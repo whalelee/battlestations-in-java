@@ -1,16 +1,32 @@
+import java.io.*;
 import java.util.*;
+import java.text.*;
+
+/**
+ * Data manager class to persist player' information to file.
+ */
 
 public class MainMenu{
 
     private AppController appCtrl;
     private Scanner sc; 
-    private Player p;
+    private Player p; //loggedInPlayer
     private Ship s;
+
+    private final int ENGINES = 1;
+    private final int FIGUREHEADS = 2;
+    private final int SAILS = 3;
+    private final int HULLS = 4;
+    private final int STABILIZERS = 5;
+    private final int WEAPONS = 6;
+
+    private ArrayList<String> validIndices;
 
     public MainMenu(AppController appCtrl){
         this.appCtrl = appCtrl;
         sc = new Scanner(System.in);
         p = appCtrl.getPlayerLoggedIn();
+        validIndices = new ArrayList<String>();
     }
     public void displayMainMenu() {
         System.out.println();
@@ -21,7 +37,7 @@ public class MainMenu{
         System.out.println("Ore: " + p.getOre() + "\t\t Prock: " + p.getProck());
         System.out.println();
         System.out.println("1. View my vital statistics");
-        System.out.println("2. My hangar");
+        System.out.println("2. My hangar (Storage)");
         System.out.println("3. Le Shippe Shoppe");
         System.out.println("4. PVP");
         System.out.println("5. Logout");
@@ -43,7 +59,8 @@ public class MainMenu{
                         processViewStatistics();
                         break;
                     case 2:
-                        processMyHangar();
+                        //processMyHangar();
+                        processStorage();
                         break;
                     case 3:
                         processShopping();
@@ -96,31 +113,186 @@ public class MainMenu{
     }
 
     public void processMyHangar(){
-       /* System.out.println();
-        System.out.println("== BattleStations :: My Hangar ==");
-        System.out.println("");
-        System.out.println();
-        System.out.println("Parts");
-        System.out.println("[F]igurehead: \t L45 - Black Skull crest");
-        System.out.println("[S]ail: \t L45 - Solar Sail");
-        System.out.println("S[t]abilizer: \t L46 - Outrigger");
-        System.out.println("[H]hull: \t L46 - Alloy Plating");
-        System.out.println("[E]ngine: \t L45 - Fuel Injector");
-        System.out.println();
-        System.out.println("Weapons:");
-        System.out.println();
-        System.out.println("[W1] L40 - Impact Cannon");
-        System.out.println("[W2] L40 - Impact Cannon");
-        System.out.println("[W3] L35 - Aerial Nines");
-        System.out.println("[W4] L45 - Hand of Justice");
-        System.out.println();
-        System.out.println("Capacity:" + "");
-        System.out.println("Speed:" + "");
-        System.out.println("Capacity:" + "");
-        System.out.println("Return to [M]ain | [E]quip | [U]nequip | [R]eport");
+       /* 
+        String choice = "";
+        boolean validChoice = false;
+        do{
+            System.out.println();
+            System.out.println("== BattleStations :: My Hangar ==");
+            System.out.println("");
+            System.out.println();
+            System.out.println("Parts");
+            System.out.println("[F]igurehead: \t L45 - Black Skull crest");
+            System.out.println("[S]ail: \t L45 - Solar Sail");
+            System.out.println("S[t]abilizer: \t L46 - Outrigger");
+            System.out.println("[H]hull: \t L46 - Alloy Plating");
+            System.out.println("[E]ngine: \t L45 - Fuel Injector");
+            System.out.println();
+            System.out.println("Weapons:");
+            System.out.println();
+            System.out.println("[W1] L40 - Impact Cannon");
+            System.out.println("[W2] L40 - Impact Cannon");
+            System.out.println("[W3] L35 - Aerial Nines");
+            System.out.println("[W4] L45 - Hand of Justice");
+            System.out.println();
+            System.out.println("Capacity:" + "");
+            System.out.println("Speed:" + "");
+            System.out.println("Capacity:" + "");
+            System.out.print("Return to [M]ain | [E]quip | [U]nequip | [R]epair");
+            choice = sc.nextLine().trim().toUpperCase();
+            
+            switch (choice){
+                case "M":
+                    validChoice = true;
+                    readOption();
+                    break;
+                case "E":
+                    validChoice = true;
+                    processStorage();
+                    break;
+                case "U":
+                    validChoice = true;
+                    processUnequip();
+                    break;
+                case "R":
+                    validChoice = true;
+                    processRepair();
+                    break;
+            }
+
+        }while(!validChoice);
         */
 
     
+    }
+
+    public void processStorage(){
+        String choice = "";
+        boolean validChoice = false;
+
+        validIndices = new ArrayList<String>();
+
+        do{
+            System.out.println();
+            System.out.println("== BattleStations :: Storage ==");
+            System.out.println("");
+            showListInStorage(FIGUREHEADS);
+            showListInStorage(SAILS);
+            showListInStorage(STABILIZERS);
+            showListInStorage(HULLS);
+            showListInStorage(ENGINES);
+            showListInStorage(WEAPONS);
+
+            System.out.print("Return to [M]ain | [B]ack to Hangar | Enter weapon/ part > ");
+            choice = sc.nextLine().trim().toUpperCase();
+
+            if (choice.equals("M")){
+                validChoice = true;
+                readOption();
+            } else if (choice.equals("B")){
+                validChoice = true;
+                processMyHangar();
+            } else if (validIndices.contains(choice)){
+                validChoice = true;
+                processEquip(choice);
+            }else{
+                System.out.println("Invalid Input!");
+            }
+
+        }while(!validChoice);
+
+            
+    }
+
+    public void showListInStorage(int list){
+        String partType = "Figureheads: ";
+        ArrayList<Part> partList = p.getStorage().getFigureheadList();
+        ArrayList<Weapon> weaponList = null;
+        String prefix = "F";
+        Part pa = null;
+        Weapon w = null;
+        switch(list){
+            case FIGUREHEADS:
+                partType = "Figureheads: ";
+                partList = p.getStorage().getFigureheadList();
+                prefix = "F";
+                pa = null;
+                break;
+            case ENGINES:
+                partType = "Engines";
+                partList = p.getStorage().getEngineList();
+                prefix = "E";
+                pa = null;
+                break;
+            case HULLS:
+                partType = "Hulls";
+                partList = p.getStorage().getHullList();
+                prefix = "H";
+                pa = null;
+                break;
+            case SAILS:
+                partType = "Sails";
+                partList = p.getStorage().getSailList();
+                prefix = "S";
+                pa = null;
+                break;
+            case STABILIZERS:
+                partType = "Stabilizers";
+                partList = p.getStorage().getStabilizerList();
+                prefix = "T";
+                pa = null;
+                break;
+            case WEAPONS:
+                partType = "Weapons";
+                weaponList = p.getStorage().getWeaponList();
+                prefix = "W";
+                w = null;
+                break;
+
+        }
+
+        System.out.println(partType + ": ");
+        if (weaponList!=null){
+            if (weaponList.size() == 0){
+                System.out.println("NIL");
+            }
+            for (int i = 1; i <=weaponList.size(); i++){
+                w = weaponList.get(i -1);
+                int levelReq = w.getLevelReq();
+                String partName = w.getName();
+                String index = prefix + i;
+                validIndices.add(index);
+
+                System.out.println(String.format("[%1s] L%2d - %3s", index, levelReq, partName));
+                
+            }
+        } else {
+
+           if (partList.size() == 0){
+                System.out.println("NIL");
+            }
+            for (int i = 1; i <=partList.size(); i++){
+                pa = partList.get(i -1);
+                int levelReq = pa.getLevelReq();
+                String partName = pa.getName();
+                String index = prefix + i;
+                validIndices.add(index);
+
+                System.out.println(String.format("[%1s] L%2d - %3s", index, levelReq, partName));
+                
+            } 
+        }
+        
+        System.out.println("");
+
+    }
+
+    public void processEquip(String choice){
+        
+    }
+
+    public void process(){
+
     }
 
     public void processShopping(){
