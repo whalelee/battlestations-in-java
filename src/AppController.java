@@ -159,13 +159,16 @@ public class AppController {
     }
 
     public void buy(Weapon w) throws DataException{
-        boolean canBuy = validateCanBuy(w);
-
-        if (canBuy){
-            //add weapon into storage
-            playerLoggedIn.addToStorage(w);
+        try {
+            boolean canBuy = validateCanBuy(w);
+            if (canBuy){
+                //add weapon into storage
+                playerLoggedIn.addToStorage(w);
+                playerMgr.updatePlayer(playerLoggedIn);
+            } // end if canBuy??
+        } catch(DataException e) {
+            throw e;
         }
-        playerMgr.updatePlayer(playerLoggedIn);
     }
 
     public void buy(Part w) throws DataException{
@@ -177,15 +180,32 @@ public class AppController {
         }
     }
 
-    public boolean validateCanBuy(Weapon w){
+    public boolean validateCanBuy(Weapon w) throws DataException{
         //compare Level Required,Gold,Wood,Ore,Plasma Rock to buy weapon
         boolean ableToBuy = true;
 
         ableToBuy = ableToBuy && (playerLoggedIn.getLevel()>=w.getLevelReq());
+        if (!ableToBuy) {
+            throw new DataException("Your Level is " + playerLoggedIn.getLevel() + "." + w.getName() + " requires a minimum Level of " + w.getLevelReq());  
+        } 
         ableToBuy = ableToBuy && (playerLoggedIn.getGold()>=w.getGold());
+        if (!ableToBuy) {
+            throw new DataException("Your Gold is " + playerLoggedIn.getGold() + "." + w.getName() + " requires a minimum Gold of " + w.getGold());  
+        } 
+
         ableToBuy = ableToBuy && (playerLoggedIn.getWood()>=w.getWood());
+        if (!ableToBuy) {
+            throw new DataException("Your Wood is " + playerLoggedIn.getWood() + "." + w.getName() + " requires a minimum Wood of " + w.getWood());  
+        } 
         ableToBuy = ableToBuy && (playerLoggedIn.getOre()>=w.getOre());
+        if (!ableToBuy) {
+            throw new DataException("Your Ore is " + playerLoggedIn.getOre() + "." + w.getName() + " requires a minimum Ore of " + w.getOre());  
+        }
+
         ableToBuy = ableToBuy && (playerLoggedIn.getProck()>=w.getProck());
+        if (!ableToBuy) {
+            throw new DataException("Your Prock is " + playerLoggedIn.getProck() + "." + w.getName() + " requires a minimum Prock of " + w.getProck());  
+        }
 
         return ableToBuy;
 
