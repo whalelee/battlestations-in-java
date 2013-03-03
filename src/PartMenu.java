@@ -102,7 +102,8 @@ public class PartMenu{
                 if(choice.equals("M")){
                     processBackToMainMenu();
                 } else if(choice.equals("B")){
-                    processBuyPart();
+                    processBuyPart(partClass, s);
+                    validChoice = false;
                 } else if(choice.equals("C")){
                     displayPartClassMenu(partClass);
                 }
@@ -124,20 +125,30 @@ public class PartMenu{
             try {
                 choice = sc.nextLine().trim().toUpperCase();
                 System.out.println();
+                
                 if(choice.equals("M")){
                 	validChoice = true;
                 	processBackToMainMenu();
-                } else {     	
-                	int input = Integer.parseInt(choice);
-                	validChoice = true;
-                    displayPartClassMenu(input);
+                } else { 
+                    try{
+                        int input = Integer.parseInt(choice);
+                        if (input >= 1 || input <= 5){
+                            validChoice = true;
+                            displayPartClassMenu(input);
+                        }// end if
+                        System.out.println("Invalid Input!!!");
+                    }catch (NumberFormatException e){
+                        System.out.println("Invalid Input!!!");
+                    } 
+
                 }
-            System.out.println("Invalid Input!");
+
             } catch (InputMismatchException e) {
                 // display error message
                 System.out.println("Please enter a valid option!");
                 sc.nextLine();
             }
+
         } while (!validChoice);
 
     }
@@ -191,20 +202,33 @@ public class PartMenu{
             } else if(choice.equals("B")){
                 validChoice = true;
                 readOption();
-            } else {        
-                int input = Integer.parseInt(choice);
-                if (input >= 1 || input <= partList.size()){
-                    validChoice = true;
-                    displayPartDetail(partClass,input);
-                }   
+            } else { 
+                try{
+                    int input = Integer.parseInt(choice);
+                    if (input >= 1 || input <= partList.size()){
+                        validChoice = true;
+                        displayPartDetail(partClass,input);
+                    }// end if
+                    System.out.println("Invalid Input!!!");
+                }catch (NumberFormatException e){
+                    System.out.println("Invalid Input!!!");
+                } 
+
             }
 
 
         } while(!validChoice);
     }
 
-    public void processBuyPart(){
-        Storage s = new Storage();
+    public void processBuyPart(int partType, Part p){
+        try{
+            appCtrl.buy(partType, p);
+            System.out.println("You have successfully bought the item " + p.getName());
+            
+        } catch (DataException e){
+            System.out.println("UNABLE TO BUY!!!");
+            System.out.println(e.getMessage());
+        }
         
     }
 

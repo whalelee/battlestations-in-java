@@ -93,7 +93,6 @@ public class ArmoryMenu{
                     processBackToMainMenu();
                 } else if(choice.equals("B")){
                     processBuyWeapon(s);
-                    
                     validChoice = false;
                 } else if(choice.equals("C")){
                     displayWeaponClassMenu(weaponClass);
@@ -191,10 +190,18 @@ public class ArmoryMenu{
 
     public void processBuyWeapon(Weapon w){
         try{
-            appCtrl.buy(w);
-            System.out.println("You have successfully bought the item " + w.getName());
-            
+            ArrayList<String> errors = appCtrl.buy(w);
+            if (errors.size() == 0){
+                System.out.println("You have successfully bought the item " + w.getName());
+            }else{
+                System.out.println();
+                System.out.println("UNABLE TO BUY!!!");
+                for (String error: errors){
+                    System.out.println(error);
+                }
+            }
         } catch (DataException e){
+            System.out.println();
             System.out.println("UNABLE TO BUY!!!");
             System.out.println(e.getMessage());
         }

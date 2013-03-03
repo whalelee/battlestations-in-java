@@ -40,6 +40,12 @@ public class Player{
 	private final double DEFAULT_CRAFT = 0;
 	private final int DEFAULT_EXP = 0;
 
+	private final int ENGINES = 1;
+    private final int FIGUREHEADS = 2;
+    private final int SAILS = 3;
+    private final int HULLS = 4;
+    private final int STABILIZERS = 5;
+
 	//player constructor with username and password
 	public Player(String username, String password, char playerType){
 		this.username 	= username;
@@ -374,6 +380,14 @@ public class Player{
 		increaseProck(w.getProck()*(-1));
 	}
 
+	public void deductResources(Part w){
+		//deduct gold by ...
+		increaseGold(w.getGold()*(-1));
+		increaseWood(w.getWood()*(-1));
+		increaseOre(w.getOre()*(-1));
+		increaseProck(w.getProck()*(-1));
+	}
+
 	public void addToStorage(Weapon w){
 		//deduct resource
 		deductResources(w);
@@ -381,9 +395,19 @@ public class Player{
 		this.storage.addToWeaponList(w);
 	}
 
-	public void addToStorage(Part w){
-		//add weapon to storage
 
+	public void addToStorage(int partType, Part w){
+		//deduct resource
+		deductResources(w);
+		//add part to storage
+		switch (partType){
+			case FIGUREHEADS:
+				this.storage.addToFigureheadList(w);
+				break;
+			case ENGINES:
+				break;
+		}
+		
 
 	}
 }

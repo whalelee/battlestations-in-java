@@ -158,29 +158,75 @@ public class AppController {
         return engineList;
     }
 
-    public void buy(Weapon w) throws DataException{
+    public ArrayList<String> buy(Weapon w) throws DataException{
         try {
-            boolean canBuy = validateCanBuy(w);
-            if (canBuy){
+            ArrayList<String> errors = validateCanBuy(w);
+            if (errors.size() == 0){
                 //add weapon into storage
                 playerLoggedIn.addToStorage(w);
                 playerMgr.updatePlayer(playerLoggedIn);
             } // end if canBuy??
+            return errors;
         } catch(DataException e) {
             throw e;
         }
     }
 
-    public void buy(Part w) throws DataException{
-        boolean canBuy = validateCanBuy(w);
+    public void buy(int partType, Part w) throws DataException{
+        try{
+            boolean canBuy = validateCanBuy(w);
 
-        if(canBuy){
-            //add weapon into storage
-            playerLoggedIn.addToStorage(w);
+            if(canBuy){
+                //add part into storage
+                playerLoggedIn.addToStorage(partType, w);
+                playerMgr.updatePlayer(playerLoggedIn);
+            }//end if
+        } catch (DataException e){
+            throw e;
         }
     }
 
-    public boolean validateCanBuy(Weapon w) throws DataException{
+    public ArrayList<String> validateCanBuy(Weapon w) {
+        //compare Level Required,Gold,Wood,Ore,Plasma Rock to buy weapon
+        
+        ArrayList<String> errors = new ArrayList<String>();
+        String s = "";
+
+        boolean levelEnough = playerLoggedIn.getLevel()>=w.getLevelReq();
+
+        if (!levelEnough) {
+            s = "Your Level is " + playerLoggedIn.getLevel() + "." + w.getName() + " requires a minimum Level of " + w.getLevelReq();
+            errors.add(s); 
+        } 
+
+        boolean goldEnough = playerLoggedIn.getGold()>=w.getGold();
+        if (!goldEnough) {
+            s = "Your Gold is " + playerLoggedIn.getGold() + "." + w.getName() + " requires a minimum Gold of " + w.getGold();
+            errors.add(s);  
+        } 
+
+        boolean woodEnough = playerLoggedIn.getWood()>=w.getWood();
+        if (!woodEnough) {
+            s = "Your Wood is " + playerLoggedIn.getWood() + "." + w.getName() + " requires a minimum Wood of " + w.getWood();
+            errors.add(s);  
+        } 
+        boolean oreEnough = playerLoggedIn.getOre()>=w.getOre();
+        if (!oreEnough) {
+            s = "Your Ore is " + playerLoggedIn.getOre() + "." + w.getName() + " requires a minimum Ore of " + w.getOre();
+            errors.add(s);  
+        }
+
+        boolean prockEnough = playerLoggedIn.getProck()>=w.getProck();
+        if (!prockEnough) {
+            s = "Your Prock is " + playerLoggedIn.getProck() + "." + w.getName() + " requires a minimum Prock of " + w.getProck();
+            errors.add(s);  
+        }
+
+        return errors;
+
+    }
+
+    public boolean validateCanBuy(Part w) throws DataException{
         //compare Level Required,Gold,Wood,Ore,Plasma Rock to buy weapon
         boolean ableToBuy = true;
 
@@ -206,20 +252,6 @@ public class AppController {
         if (!ableToBuy) {
             throw new DataException("Your Prock is " + playerLoggedIn.getProck() + "." + w.getName() + " requires a minimum Prock of " + w.getProck());  
         }
-
-        return ableToBuy;
-
-    }
-
-    public boolean validateCanBuy(Part p){
-        //compare Level Required,Gold,Wood,Ore,Plasma Rock to buy weapon
-        boolean ableToBuy = true;
-
-        ableToBuy = ableToBuy && (playerLoggedIn.getLevel()>=p.getLevelReq());
-        ableToBuy = ableToBuy && (playerLoggedIn.getGold()>=p.getGold());
-        ableToBuy = ableToBuy && (playerLoggedIn.getWood()>=p.getWood());
-        ableToBuy = ableToBuy && (playerLoggedIn.getOre()>=p.getOre());
-        ableToBuy = ableToBuy && (playerLoggedIn.getProck()>=p.getProck());
 
         return ableToBuy;
 
