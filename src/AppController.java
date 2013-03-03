@@ -158,16 +158,17 @@ public class AppController {
         return engineList;
     }
 
-    public void buy(Weapon w){
+    public void buy(Weapon w) throws DataException{
         boolean canBuy = validateCanBuy(w);
 
         if (canBuy){
             //add weapon into storage
             playerLoggedIn.addToStorage(w);
         }
+        playerMgr.updatePlayer(playerLoggedIn);
     }
 
-    public void buy(Part w){
+    public void buy(Part w) throws DataException{
         boolean canBuy = validateCanBuy(w);
 
         if(canBuy){

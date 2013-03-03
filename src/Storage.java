@@ -72,7 +72,7 @@ public class Storage{
 			result +=":";
 		}
 
-		return result.substring(0, result.length()-2); 
+		return result.substring(0, result.length()-1); 
 		// return the whole string except for the last character
 	}
 
@@ -146,8 +146,7 @@ public class Storage{
 			result += p.getName(); 
 			result +=":";
 		}
-
-		return result.substring(0, result.length()-2); 
+		return result.substring(0, result.length()-1); 
 		// return the whole string except for the last character
 	}
 

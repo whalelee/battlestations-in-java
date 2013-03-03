@@ -1,4 +1,4 @@
-#Ship;Speed;HP;Slots;Capacity;Level Required;Gold;Wood;Ore;Plasma Rock;Port
+#Ship,Speed,HP,Slots,Capacity,Level Required,Gold,Wood,Ore,Plasma Rock,Port
 Windrider,120,1475,3,800,1,5750,9,0,0,Imperial City Port
 Albatross,125,4000,4,2050,10,73250,184,36,0,Imperial City Port
 Enterprise,150,1950,2,2950,10,66300,175,36,0,Imperial City Port
