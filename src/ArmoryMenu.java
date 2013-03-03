@@ -117,12 +117,19 @@ public class ArmoryMenu{
                 if(choice.equals("M")){
                 	validChoice = true;
                 	processBackToMainMenu();
-                } else {     	
-                	int input = Integer.parseInt(choice);
-                	validChoice = true;
-                    displayWeaponClassMenu(input);
+                } else {
+                    try{
+                        int input = Integer.parseInt(choice);
+                        if (input >= 1 && input <= 4){
+                            validChoice = true;
+                            displayWeaponClassMenu(input);
+                        }// end if
+                        System.out.println("Invalid Input!!!");
+                    }catch (NumberFormatException e){
+                        System.out.println("Invalid Input!!!");
+                    } 
+                    
                 }
-            System.out.println("Invalid Input!");
             } catch (InputMismatchException e) {
                 // display error message
                 System.out.println("Please enter a valid option!");
@@ -177,11 +184,19 @@ public class ArmoryMenu{
                 validChoice = true;
                 readOption();
             } else {        
-                int input = Integer.parseInt(choice);
-                if (input >= 1 || input <= weaponList.size()){
-                    validChoice = true;
-                    displayWeaponDetail(weaponClass,input);
-                }   
+                try{
+                    int input = Integer.parseInt(choice);
+                    int size = weaponList.size();
+                    if (input > 1 && input <= size){
+                        validChoice = true;
+                        displayWeaponDetail(weaponClass,input);
+                    }  // end if
+                    System.out.println("Invalid Input!!!");
+                }catch (NumberFormatException e){
+                    System.out.println("Invalid Input!!!");
+                } 
+
+                 
             }
 
 

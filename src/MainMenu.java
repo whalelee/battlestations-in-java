@@ -122,12 +122,6 @@ public class MainMenu{
             System.out.println("");
             System.out.println();
             System.out.println("Parts");
-            System.out.println("[F]igurehead: \t L45 - Black Skull crest");
-            System.out.println("[S]ail: \t L45 - Solar Sail");
-            System.out.println("S[t]abilizer: \t L46 - Outrigger");
-            System.out.println("[H]hull: \t L46 - Alloy Plating");
-            System.out.println("[E]ngine: \t L45 - Fuel Injector");
-            System.out.println();
             System.out.println("Weapons:");
             System.out.println();
             System.out.println("[W1] L40 - Impact Cannon");
@@ -291,9 +285,6 @@ public class MainMenu{
         
     }
 
-    public void process(){
-
-    }
 
     public void processShopping(){
         String choice = null;

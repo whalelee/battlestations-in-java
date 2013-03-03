@@ -132,7 +132,7 @@ public class PartMenu{
                 } else { 
                     try{
                         int input = Integer.parseInt(choice);
-                        if (input >= 1 || input <= 5){
+                        if (input >= 1 && input <= 5){
                             validChoice = true;
                             displayPartClassMenu(input);
                         }// end if
@@ -205,14 +205,14 @@ public class PartMenu{
             } else { 
                 try{
                     int input = Integer.parseInt(choice);
-                    if (input >= 1 || input <= partList.size()){
+                    if (input >= 1 && input <= partList.size()){
                         validChoice = true;
                         displayPartDetail(partClass,input);
                     }// end if
                     System.out.println("Invalid Input!!!");
                 }catch (NumberFormatException e){
                     System.out.println("Invalid Input!!!");
-                } 
+                }
 
             }
 
@@ -222,10 +222,19 @@ public class PartMenu{
 
     public void processBuyPart(int partType, Part p){
         try{
-            appCtrl.buy(partType, p);
-            System.out.println("You have successfully bought the item " + p.getName());
-            
+            ArrayList<String> errors = appCtrl.buy(partType, p);
+            if (errors.size() == 0){
+                System.out.println("You have successfully bought the item " + p.getName());
+            } else{
+                System.out.println();
+                System.out.println("UNABLE TO BUY!!!");
+                for (String error: errors){
+                    System.out.println(error);
+                }
+
+            }
         } catch (DataException e){
+            System.out.println();
             System.out.println("UNABLE TO BUY!!!");
             System.out.println(e.getMessage());
         }
