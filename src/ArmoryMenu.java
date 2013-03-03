@@ -93,10 +93,11 @@ public class ArmoryMenu{
                     processBackToMainMenu();
                 } else if(choice.equals("B")){
                     processBuyWeapon(s);
+                    System.out.println("You have successfully bought 1 " + s.getName());
+                    validChoice = false;
                 } else if(choice.equals("C")){
                     displayWeaponClassMenu(weaponClass);
                 }
-
             }else{
                 System.out.println("Invalid Input!");
                 validChoice =false;
@@ -189,7 +190,7 @@ public class ArmoryMenu{
     }
 
     public void processBuyWeapon(Weapon w){
-        appCtrl.buyWeapon(w);
+        appCtrl.buy(w);
     }
 
     public void processBackToMainMenu(){

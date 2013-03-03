@@ -11,6 +11,7 @@ public class Storage{
 	private ArrayList<Part> stabilizerList;
 	private ArrayList<Part> engineList;
 	private ArrayList<Part> hullList;
+	
 	private ArrayList<Weapon> weaponList;
 
 	private final int ENGINES = 1;

@@ -158,8 +158,22 @@ public class AppController {
         return engineList;
     }
 
-    public void buyWeapon(Weapon w){
-        validateWeapon(w);
+    public void buy(Weapon w){
+        boolean canBuy = validateCanBuy(w);
+
+        if (canBuy){
+            //add weapon into storage
+            playerLoggedIn.addToStorage(w);
+        }
+    }
+
+    public void buy(Part w){
+        boolean canBuy = validateCanBuy(w);
+
+        if(canBuy){
+            //add weapon into storage
+            playerLoggedIn.addToStorage(w);
+        }
     }
 
     public boolean validateCanBuy(Weapon w){

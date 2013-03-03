@@ -340,4 +340,50 @@ public class Player{
 		}
 		this.setAP(newAP);
 	}
+
+	private final int GOLD = 1;
+	private final int WOOD = 2;
+	private final int ORE = 3;
+	private final int PROCK = 4;
+
+	public void increaseGold(int increment){
+		int newGold = this.gold + increment;
+		this.setGold(newGold);
+	}
+
+	public void increaseWood(int increment){
+		int newWood = this.wood + increment;
+		this.setWood(newWood);
+	}
+
+	public void increaseOre(int increment){
+		int newOre = this.ore + increment;
+		this.setOre(newOre);
+	}
+
+	public void increaseProck(int increment){
+		int newProck = this.prock + increment;
+		this.setProck(newProck);
+	}
+
+	public void deductResources(Weapon w){
+		//deduct gold by ...
+		increaseGold(w.getGold()*(-1));
+		increaseWood(w.getWood()*(-1));
+		increaseOre(w.getOre()*(-1));
+		increaseProck(w.getProck()*(-1));
+	}
+
+	public void addToStorage(Weapon w){
+		//deduct resource
+		deductResources(w);
+		//add weapon to storage
+		this.storage.addToWeaponList(w);
+	}
+
+	public void addToStorage(Part w){
+		//add weapon to storage
+
+
+	}
 }
