@@ -158,6 +158,36 @@ public class AppController {
         return engineList;
     }
 
+    public void buyWeapon(Weapon w){
+        validateWeapon(w);
+    }
 
+    public boolean validateCanBuy(Weapon w){
+        //compare Level Required,Gold,Wood,Ore,Plasma Rock to buy weapon
+        boolean ableToBuy = true;
+
+        ableToBuy = ableToBuy && (playerLoggedIn.getLevel()>=w.getLevelReq());
+        ableToBuy = ableToBuy && (playerLoggedIn.getGold()>=w.getGold());
+        ableToBuy = ableToBuy && (playerLoggedIn.getWood()>=w.getWood());
+        ableToBuy = ableToBuy && (playerLoggedIn.getOre()>=w.getOre());
+        ableToBuy = ableToBuy && (playerLoggedIn.getProck()>=w.getProck());
+
+        return ableToBuy;
+
+    }
+
+    public boolean validateCanBuy(Part p){
+        //compare Level Required,Gold,Wood,Ore,Plasma Rock to buy weapon
+        boolean ableToBuy = true;
+
+        ableToBuy = ableToBuy && (playerLoggedIn.getLevel()>=p.getLevelReq());
+        ableToBuy = ableToBuy && (playerLoggedIn.getGold()>=p.getGold());
+        ableToBuy = ableToBuy && (playerLoggedIn.getWood()>=p.getWood());
+        ableToBuy = ableToBuy && (playerLoggedIn.getOre()>=p.getOre());
+        ableToBuy = ableToBuy && (playerLoggedIn.getProck()>=p.getProck());
+
+        return ableToBuy;
+
+    }
 
 } // AppController

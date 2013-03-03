@@ -92,7 +92,7 @@ public class ArmoryMenu{
                 if(choice.equals("M")){
                     processBackToMainMenu();
                 } else if(choice.equals("B")){
-                    processBuyWeapon();
+                    processBuyWeapon(s);
                 } else if(choice.equals("C")){
                     displayWeaponClassMenu(weaponClass);
                 }
@@ -188,8 +188,8 @@ public class ArmoryMenu{
         } while(!validChoice);
     }
 
-    public void processBuyWeapon(){
-
+    public void processBuyWeapon(Weapon w){
+        appCtrl.buyWeapon(w);
     }
 
     public void processBackToMainMenu(){
