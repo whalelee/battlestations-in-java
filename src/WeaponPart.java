@@ -103,7 +103,7 @@ public class WeaponPart{
 	public int getMaxDamage(){
 		return 0;
 	}
-	public void setMaxDamage(int maxDamage){
+	public void setMaxDamage(int maxDamage){                                                      
 	}
 
 
