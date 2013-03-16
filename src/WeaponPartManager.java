@@ -240,7 +240,7 @@ public class WeaponPartManager{
 				String port = data[10];  
 
                 //set data to the Ship object
-                WeaponPart p = new WeaponPart();
+                Weapon p = new Weapon();
                 p.setName(name);
                 p.setRange(range);
                 p.setMinDamage(minDamage);

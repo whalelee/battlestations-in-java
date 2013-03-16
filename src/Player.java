@@ -380,13 +380,6 @@ public class Player{
 		increaseProck(w.getProck()*(-1));
 	}
 
-	public void deductResources(Part w){
-		//deduct gold by ...
-		increaseGold(w.getGold()*(-1));
-		increaseWood(w.getWood()*(-1));
-		increaseOre(w.getOre()*(-1));
-		increaseProck(w.getProck()*(-1));
-	}
 
 	public void addToStorage(WeaponPart w){
 		//deduct resource
@@ -396,7 +389,7 @@ public class Player{
 	}
 
 
-	public void addToStorage(int partType, Part w){
+	public void addToStorage(int partType, WeaponPart w){
 		//deduct resource
 		deductResources(w);
 		//add part to storage

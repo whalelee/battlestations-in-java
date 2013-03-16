@@ -122,7 +122,7 @@ public class ArmoryMenu{
                         int input = Integer.parseInt(choice);
                         if (input >= 1 && input <= 4){
                             validChoice = true;
-                            displayWeaponClassMenu(input);
+                            displayWeaponClassMenu(input+10);
                         }// end if
                         System.out.println("Invalid Input!!!");
                     }catch (NumberFormatException e){

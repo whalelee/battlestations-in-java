@@ -170,7 +170,7 @@ public class AppController {
         }
     }
 
-    public ArrayList<String> buy(int partType, Part w) throws DataException{
+    public ArrayList<String> buy(int partType, WeaponPart w) throws DataException{
         try{
             ArrayList<String> errors = validateCanBuy(w);
 
