@@ -66,5 +66,45 @@ public class WeaponPart{
 	}
 
 
+	public int getHP(){
+		return 0;
+	}
+	public void setHP(int hp){
+
+	}
+
+	public int getCapacity(){
+		return 0;
+	}
+	public void setCapacity(int capacity){
+
+	}
+
+	public int getSpeed(){
+		return 0;
+	}
+	public void setSpeed(int speed){
+
+	}
+
+	public int getRange(){
+		return 0;
+	}
+	public void setRange(int range){
+	
+	}
+
+	public int getMinDamage(){
+		return 0;
+	}
+	public void setMinDamage(int minDamage){
+	}
+
+	public int getMaxDamage(){
+		return 0;
+	}
+	public void setMaxDamage(int maxDamage){
+	}
+
 
 }

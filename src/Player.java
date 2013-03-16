@@ -372,7 +372,7 @@ public class Player{
 		this.setProck(newProck);
 	}
 
-	public void deductResources(Weapon w){
+	public void deductResources(WeaponPart w){
 		//deduct gold by ...
 		increaseGold(w.getGold()*(-1));
 		increaseWood(w.getWood()*(-1));
@@ -388,7 +388,7 @@ public class Player{
 		increaseProck(w.getProck()*(-1));
 	}
 
-	public void addToStorage(Weapon w){
+	public void addToStorage(WeaponPart w){
 		//deduct resource
 		deductResources(w);
 		//add weapon to storage

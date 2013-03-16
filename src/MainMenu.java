@@ -200,11 +200,11 @@ public class MainMenu{
 
     public void showListInStorage(int list){
         String partType = "Figureheads: ";
-        ArrayList<Part> partList = p.getStorage().getFigureheadList();
-        ArrayList<Weapon> weaponList = null;
+        ArrayList<WeaponPart> partList = p.getStorage().getFigureheadList();
+        ArrayList<WeaponPart> weaponList = null;
         String prefix = "F";
-        Part pa = null;
-        Weapon w = null;
+        WeaponPart pa = null;
+        WeaponPart w = null;
         switch(list){
             case FIGUREHEADS:
                 partType = "Figureheads: ";

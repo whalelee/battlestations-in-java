@@ -6,13 +6,13 @@ import java.text.*;
  * Data manager class to persist player' information to file.
  */
 public class Storage{
-	private ArrayList<Part> figureheadList;
-	private ArrayList<Part> sailList;
-	private ArrayList<Part> stabilizerList;
-	private ArrayList<Part> engineList;
-	private ArrayList<Part> hullList;
+	private ArrayList<WeaponPart> figureheadList;
+	private ArrayList<WeaponPart> sailList;
+	private ArrayList<WeaponPart> stabilizerList;
+	private ArrayList<WeaponPart> engineList;
+	private ArrayList<WeaponPart> hullList;
 	
-	private ArrayList<Weapon> weaponList;
+	private ArrayList<WeaponPart> weaponList;
 
 	private final int ENGINES = 1;
     private final int FIGUREHEADS = 2;
@@ -21,28 +21,28 @@ public class Storage{
     private final int STABILIZERS = 5;
 
 	public Storage(){
-		figureheadList = new ArrayList<Part>();
-		sailList = new ArrayList<Part>();
-		stabilizerList = new ArrayList<Part>();
-		engineList = new ArrayList<Part>();
-		hullList = new ArrayList<Part>();
-		weaponList = new ArrayList<Weapon>();
+		figureheadList = new ArrayList<WeaponPart>();
+		sailList = new ArrayList<WeaponPart>();
+		stabilizerList = new ArrayList<WeaponPart>();
+		engineList = new ArrayList<WeaponPart>();
+		hullList = new ArrayList<WeaponPart>();
+		weaponList = new ArrayList<WeaponPart>();
 	}
 
-	public ArrayList<Part> getFigureheadList(){
+	public ArrayList<WeaponPart> getFigureheadList(){
 		return figureheadList;
 	}
 
-	public void setFigureheadList(ArrayList<Part> f){
+	public void setFigureheadList(ArrayList<WeaponPart> f){
 		this.figureheadList = f;;
 	}
 
-	public void addToFigureheadList(Part p){
+	public void addToFigureheadList(WeaponPart p){
 		this.figureheadList.add(p);
 	}
 
 	public String getListToString(int partType){
-		ArrayList<Part> list = new ArrayList<Part>();
+		ArrayList<WeaponPart> list = new ArrayList<WeaponPart>();
 
 		switch(partType){
 			case FIGUREHEADS:
@@ -67,7 +67,7 @@ public class Storage{
 			return " ";
 		}
 		String result ="";
-		for(Part p : list){
+		for(WeaponPart p : list){
 			result += p.getName(); 
 			result +=":";
 		}
@@ -76,63 +76,63 @@ public class Storage{
 		// return the whole string except for the last character
 	}
 
-	public ArrayList<Part> getSailList(){
+	public ArrayList<WeaponPart> getSailList(){
 		return sailList;
 	}
 
-	public void setSailList(ArrayList<Part> s){
+	public void setSailList(ArrayList<WeaponPart> s){
 		this.sailList = s;
 	}
 
-	public void addToSailList(Part p){
+	public void addToSailList(WeaponPart p){
 		this.sailList.add(p);
 	}
 
-	public ArrayList<Part> getStabilizerList(){
+	public ArrayList<WeaponPart> getStabilizerList(){
 		return stabilizerList;
 	}
 
-	public void setStabilizerList(ArrayList<Part> s){
+	public void setStabilizerList(ArrayList<WeaponPart> s){
 		this.stabilizerList = s;
 	}
 	
-	public void addToStabilizerList(Part p){
+	public void addToStabilizerList(WeaponPart p){
 		this.stabilizerList.add(p);
 	}
 
-	public ArrayList<Part> getEngineList(){
+	public ArrayList<WeaponPart> getEngineList(){
 		return engineList;
 	}
 
-	public void setEngineList(ArrayList<Part> e){
+	public void setEngineList(ArrayList<WeaponPart> e){
 		this.engineList = e;;
 	}
 
-	public void addToEngineList(Part p){
+	public void addToEngineList(WeaponPart p){
 		this.engineList.add(p);
 	}
 
-	public ArrayList<Part> getHullList(){
+	public ArrayList<WeaponPart> getHullList(){
 		return hullList;
 	}
 	
-	public void setHullList(ArrayList<Part> h){
+	public void setHullList(ArrayList<WeaponPart> h){
 		this.hullList = h;
 	}
 
-	public void addToHullList(Part p){
+	public void addToHullList(WeaponPart p){
 		this.hullList.add(p);
 	}
 
-	public ArrayList<Weapon> getWeaponList(){
+	public ArrayList<WeaponPart> getWeaponList(){
 		return weaponList;
 	}
 
-	public void setWeaponList(ArrayList<Weapon> w){
+	public void setWeaponList(ArrayList<WeaponPart> w){
 		this.weaponList = w;
 	}
 	
-	public void addToWeaponList(Weapon w){
+	public void addToWeaponList(WeaponPart w){
 		this.weaponList.add(w);
 	}		
 
@@ -142,7 +142,7 @@ public class Storage{
 			return " ";
 		}
 		String result ="";
-		for(Weapon p : weaponList){
+		for(WeaponPart p : weaponList){
 			result += p.getName(); 
 			result +=":";
 		}

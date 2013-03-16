@@ -10,8 +10,7 @@ public class PlayerManager {
     // attribute
     private ArrayList<Player> playerList;
     private ShipManager shipMgr;
-    private PartManager partMgr;
-    private WeaponManager weaponMgr;
+    private WeaponPartManager weaponPartMgr;
     private final String FILE_NAME = "data/players.csv";
     private final String CLASS_NAME = "PlayerManager";
 
@@ -27,10 +26,9 @@ public class PlayerManager {
      *
      * @throws DataException Thrown when unable to load player' information from file.
      */
-    public PlayerManager(ShipManager shipMgr, PartManager partMgr, WeaponManager weaponMgr) throws DataException {
-        this.partMgr = partMgr;
+    public PlayerManager(ShipManager shipMgr, WeaponPartManager weaponPartMgr) throws DataException {
         this.shipMgr = shipMgr;
-        this.weaponMgr = weaponMgr;
+        this.weaponPartMgr = weaponPartMgr;
         playerList = new ArrayList<Player>();
         load();
     }
@@ -76,7 +74,7 @@ public class PlayerManager {
                 String[] figureheads = storageFigureheads.split(":");
                 for(String fig : figureheads) {
                     
-                    Part part = this.partMgr.getPartByTypeAndName(FIGUREHEADS,fig);
+                    WeaponPart part = this.weaponPartMgr.getPartByTypeAndName(FIGUREHEADS,fig);
                     if (part!=null)
                         storage.addToFigureheadList(part);
                 }
@@ -84,7 +82,7 @@ public class PlayerManager {
                 String storageSails = data[18];
                 String[] sails = storageSails.split(":");
                 for(String sai : sails) {
-                    Part sail = this.partMgr.getPartByTypeAndName(SAILS,sai);
+                    WeaponPart sail = this.weaponPartMgr.getPartByTypeAndName(SAILS,sai);
                     if (sail!=null)
                         storage.addToSailList(sail);
                 }
@@ -92,7 +90,7 @@ public class PlayerManager {
                 String storageStabilizers = data[19];
                 String[] stabilizers = storageStabilizers.split(":");
                 for(String sta : stabilizers) {
-                    Part stabilizer = this.partMgr.getPartByTypeAndName(STABILIZERS,sta);
+                    WeaponPart stabilizer = this.weaponPartMgr.getPartByTypeAndName(STABILIZERS,sta);
                     if (stabilizer!=null)
                         storage.addToStabilizerList(stabilizer);
                 }
@@ -100,7 +98,7 @@ public class PlayerManager {
                 String storageHull = data[20];
                 String[] hulls = storageHull.split(":");
                 for(String hul : hulls) {
-                    Part hull = this.partMgr.getPartByTypeAndName(HULLS,hul);
+                    WeaponPart hull = this.weaponPartMgr.getPartByTypeAndName(HULLS,hul);
                     if (hull!=null)
                         storage.addToHullList(hull);
                 }
@@ -108,7 +106,7 @@ public class PlayerManager {
                 String storageEngine = data[21];
                 String[] engines = storageEngine.split(":");
                 for(String eng : engines) {
-                    Part engine = this.partMgr.getPartByTypeAndName(ENGINES,eng);
+                    WeaponPart engine = this.weaponPartMgr.getPartByTypeAndName(ENGINES,eng);
                     if (engine!=null)
                         storage.addToEngineList(engine);
                 }
@@ -116,7 +114,7 @@ public class PlayerManager {
                 String storageWeapon = data[22];
                 String[] weapons = storageWeapon.split(":");
                 for(String wea : weapons) {
-                    Weapon weapon = this.weaponMgr.getWeaponByName(wea);
+                    WeaponPart weapon = this.weaponPartMgr.getWeaponByName(wea);
                     if (weapon!=null)
                         storage.addToWeaponList(weapon);
                 }

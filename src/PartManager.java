@@ -6,11 +6,11 @@ import java.text.*;
  * Data manager class to persist player' information to file.
  */
 public class PartManager{
-	private ArrayList<Part> engineList;
-	private ArrayList<Part> figureheadList;
-	private ArrayList<Part> hullList;
-	private ArrayList<Part> sailList;
-	private ArrayList<Part> stabilizerList;
+	private ArrayList<WeaponPart> engineList;
+	private ArrayList<WeaponPart> figureheadList;
+	private ArrayList<WeaponPart> hullList;
+	private ArrayList<WeaponPart> sailList;
+	private ArrayList<WeaponPart> stabilizerList;
     
     private final String ENGINE_FILE_NAME = "data/engines.csv";
     private final String FIGUREHEAD_FILE_NAME = "data/figureheads.csv";
@@ -33,16 +33,16 @@ public class PartManager{
      * @throws DataException Thrown when unable to load ship' information from file.
      */
 	public PartManager() throws DataException{
-		engineList = new ArrayList<Part>();
-		figureheadList = new ArrayList<Part>();
-		sailList = new ArrayList<Part>();
-		hullList = new ArrayList<Part>();
-		stabilizerList = new ArrayList<Part>();
+		engineList = new ArrayList<WeaponPart>();
+		figureheadList = new ArrayList<WeaponPart>();
+		sailList = new ArrayList<WeaponPart>();
+		hullList = new ArrayList<WeaponPart>();
+		stabilizerList = new ArrayList<WeaponPart>();
 		
         load();
 	}
 
-	public ArrayList<Part> getPartList(int partClass){
+	public ArrayList<WeaponPart> getPartList(int partClass){
 		switch(partClass){
 			case ENGINES:
 				return engineList;
@@ -72,7 +72,7 @@ public class PartManager{
 
 	public Part getPartByTypeAndName(int partType, String name){
 		
-		ArrayList<Part> partList = new ArrayList<Part>();
+		ArrayList<WeaponPart> partList = new ArrayList<WeaponPart>();
 
 		switch(partType){
 			case FIGUREHEADS:
@@ -102,7 +102,6 @@ public class PartManager{
 
 	public void loadThisPartClass(int partClass) throws DataException{
 		String filename = "";
-		ArrayList<Part> weaponList = new ArrayList<Part>();
 
 		switch(partClass) {
 			case SAILS :

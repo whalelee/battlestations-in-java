@@ -6,12 +6,12 @@ import java.text.*;
  * Data manager class to persist player' information to file.
  */
 public class WeaponManager{
-	private ArrayList<Weapon> cannonList;
-	private ArrayList<Weapon> subcannonList;
-	private ArrayList<Weapon> missileList;
-	private ArrayList<Weapon> meleeList;
+	private ArrayList<WeaponPart> cannonList;
+	private ArrayList<WeaponPart> subcannonList;
+	private ArrayList<WeaponPart> missileList;
+	private ArrayList<WeaponPart> meleeList;
 
-	private ArrayList< ArrayList<Weapon>> weaponList;
+	private ArrayList< ArrayList<WeaponPart>> weaponList; 
     
     private final String MISSILE_FILE_NAME = "data/missiles.csv";
     private final String CANNON_FILE_NAME = "data/cannons.csv";
@@ -32,15 +32,15 @@ public class WeaponManager{
      * @throws DataException Thrown when unable to load ship' information from file.
      */
 	public WeaponManager() throws DataException{
-		cannonList = new ArrayList<Weapon>();
-		subcannonList = new ArrayList<Weapon>();
-		missileList = new ArrayList<Weapon>();
-		meleeList = new ArrayList<Weapon>();
-		weaponList = new ArrayList< ArrayList<Weapon>>();
+		cannonList = new ArrayList<WeaponPart>();
+		subcannonList = new ArrayList<WeaponPart>();
+		missileList = new ArrayList<WeaponPart>();
+		meleeList = new ArrayList<WeaponPart>();
+		weaponList = new ArrayList< ArrayList<WeaponPart>>();
         load();
 	}
 
-	public ArrayList<Weapon> getWeaponList(int weaponClass){
+	public ArrayList<WeaponPart> getWeaponList(int weaponClass){
 		switch(weaponClass){
 			case CANNONS:
 				return cannonList;
@@ -67,7 +67,7 @@ public class WeaponManager{
 
 	public void loadThisWeaponClass(String weaponClass) throws DataException{
 		String filename = "";
-		ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
+		ArrayList<WeaponPart> weaponList = new ArrayList<WeaponPart>();
 
 		switch(weaponClass) {
 			case "missile" :
@@ -165,7 +165,7 @@ public class WeaponManager{
 	}
 
 	public Weapon getWeaponByName(String name){
-		for(ArrayList<Weapon> list: weaponList){
+		for(ArrayList<WeaponPart> list: weaponList){
 			for(Weapon w: list){
 				if(w.getName().equals(name)){
 					return w;

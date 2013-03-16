@@ -6,15 +6,15 @@ public class ArmoryMenu{
 	
 	private AppController appCtrl;
 	private Scanner sc;
-	private ArrayList<Weapon> cannonList;
-    private ArrayList<Weapon> subcannonList;
-    private ArrayList<Weapon> missileList;
-    private ArrayList<Weapon> meleeList;
+	private ArrayList<WeaponPart> cannonList;
+    private ArrayList<WeaponPart> subcannonList;
+    private ArrayList<WeaponPart> missileList;
+    private ArrayList<WeaponPart> meleeList;
 
-    private final int CANNONS = 1;
-    private final int MELEES = 2;
-    private final int MISSILES = 3;
-    private final int SUBCANNONS = 4;
+    private final int CANNONS = 11;
+    private final int MELEES = 12;
+    private final int MISSILES = 13;
+    private final int SUBCANNONS = 14;
 
 
 	public ArmoryMenu(AppController appCtrl){
@@ -44,7 +44,7 @@ public class ArmoryMenu{
 
     public void displayWeaponDetail(int weaponClass, int index){
 		String wClassName = "";
-        ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
+        ArrayList<WeaponPart> weaponList = new ArrayList<WeaponPart>();
 
         switch(weaponClass){
             case CANNONS :
@@ -70,7 +70,7 @@ public class ArmoryMenu{
             System.out.println();
             System.out.println("== BattleStations :: Le Armory :: " + wClassName + " :: Details ==");
             System.out.println();
-            Weapon s = weaponList.get(index-1);
+            WeaponPart s = weaponList.get(index-1);
             System.out.println("Weapon: " + s.getName());
             System.out.println("Range: " + s.getRange());
             System.out.println("Min Damage: " + s.getMinDamage());
@@ -85,7 +85,7 @@ public class ArmoryMenu{
             System.out.println(" | Prock: " + s.getProck());
 
             System.out.println();
-            System.out.print("Return to [M]ain | [C]hoose Other Weapon | [B]uy it > ");
+            System.out.print("Return to [M]ain | [C]hoose Other WeaponPart | [B]uy it > ");
             choice = sc.nextLine().trim().toUpperCase();
             if(choice.equals("M") || choice.equals("B") || choice.equals("C")){
                 validChoice = true;
@@ -141,7 +141,7 @@ public class ArmoryMenu{
 
     public void displayWeaponClassMenu(int weaponClass){
         String wClassName = "";
-        ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
+        ArrayList<WeaponPart> weaponList = new ArrayList<WeaponPart>();
 
         switch(weaponClass){
             case CANNONS :
@@ -167,7 +167,7 @@ public class ArmoryMenu{
             System.out.println();
             System.out.println("== BattleStations :: Le Armory :: " + wClassName + "==");
             for(int i = 1 ; i <= weaponList.size() ; i++){
-                Weapon c = weaponList.get(i-1);
+                WeaponPart c = weaponList.get(i-1);
                 System.out.print(i + ". ");
                 System.out.print(c.getName());
                 System.out.print(" (min: L");
@@ -203,7 +203,7 @@ public class ArmoryMenu{
         } while(!validChoice);
     }
 
-    public void processBuyWeapon(Weapon w){
+    public void processBuyWeapon(WeaponPart w){
         try{
             ArrayList<String> errors = appCtrl.buy(w);
             if (errors.size() == 0){

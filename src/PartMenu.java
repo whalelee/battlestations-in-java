@@ -7,11 +7,11 @@ public class PartMenu{
 	private AppController appCtrl;
 	private Scanner sc;
 	
-    private ArrayList<Part> engineList;
-    private ArrayList<Part> figureheadList;
-    private ArrayList<Part> hullList;
-    private ArrayList<Part> sailList;
-    private ArrayList<Part> stabilizerList;
+    private ArrayList<WeaponPart> engineList;
+    private ArrayList<WeaponPart> figureheadList;
+    private ArrayList<WeaponPart> hullList;
+    private ArrayList<WeaponPart> sailList;
+    private ArrayList<WeaponPart> stabilizerList;
 
     private final int ENGINES = 1;
     private final int FIGUREHEADS = 2;
@@ -50,7 +50,7 @@ public class PartMenu{
 
     public void displayPartDetail(int partClass, int index){
 		String wClassName = "";
-        ArrayList<Part> partList = new ArrayList<Part>();
+        ArrayList<WeaponPart> partList = new ArrayList<WeaponPart>();
 
         switch(partClass){
             case ENGINES :
@@ -80,7 +80,7 @@ public class PartMenu{
             System.out.println();
             System.out.println("== BattleStations :: Le Part :: " + wClassName + " :: Details ==");
             System.out.println();
-            Part s = partList.get(index-1);
+            WeaponPart s = partList.get(index-1);
             System.out.println("Part: " + s.getName());
             System.out.println("Speed: " + s.getSpeed());
             System.out.println("HP: " + s.getHP());
@@ -155,7 +155,7 @@ public class PartMenu{
 
     public void displayPartClassMenu(int partClass){
         String wClassName = "";
-        ArrayList<Part> partList = new ArrayList<Part>();
+        ArrayList<WeaponPart> partList = new ArrayList<WeaponPart>();
 
         switch(partClass){
             case ENGINES :
@@ -186,7 +186,7 @@ public class PartMenu{
             System.out.println();
             System.out.println("== BattleStations :: Le Part :: " + wClassName + "==");
             for(int i = 1 ; i <= partList.size() ; i++){
-                Part c = partList.get(i-1);
+                WeaponPart c = partList.get(i-1);
                 System.out.print(i + ". ");
                 System.out.print(c.getName());
                 System.out.print(" (min: L");
@@ -220,7 +220,7 @@ public class PartMenu{
         } while(!validChoice);
     }
 
-    public void processBuyPart(int partType, Part p){
+    public void processBuyPart(int partType, WeaponPart p){
         try{
             ArrayList<String> errors = appCtrl.buy(partType, p);
             if (errors.size() == 0){

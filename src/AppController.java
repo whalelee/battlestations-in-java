@@ -3,27 +3,26 @@ import java.util.*;
 public class AppController {
     private PlayerManager playerMgr;
     private ShipManager shipMgr;
-    private WeaponManager weaponMgr;
-    private PartManager partMgr;
+    private WeaponPartManager weaponPartMgr;
 
     private Player playerLoggedIn;
     
     private ArrayList<Ship> shipList;
-    private ArrayList<Weapon> cannonList;
-    private ArrayList<Weapon> subcannonList;
-    private ArrayList<Weapon> missileList;
-    private ArrayList<Weapon> meleeList;
+    private ArrayList<WeaponPart> cannonList;
+    private ArrayList<WeaponPart> subcannonList;
+    private ArrayList<WeaponPart> missileList;
+    private ArrayList<WeaponPart> meleeList;
 
-    private ArrayList<Part> engineList;
-    private ArrayList<Part> figureheadList;
-    private ArrayList<Part> hullList;
-    private ArrayList<Part> sailList;
-    private ArrayList<Part> stabilizerList;
+    private ArrayList<WeaponPart> engineList;
+    private ArrayList<WeaponPart> figureheadList;
+    private ArrayList<WeaponPart> hullList;
+    private ArrayList<WeaponPart> sailList;
+    private ArrayList<WeaponPart> stabilizerList;
 
-    private final int CANNONS = 1;
-    private final int MELEES = 2;
-    private final int MISSILES = 3;
-    private final int SUBCANNONS = 4;
+    private final int CANNONS = 11;
+    private final int MELEES = 12;
+    private final int MISSILES = 13;
+    private final int SUBCANNONS = 14;
 
     private final int ENGINES = 1;
     private final int FIGUREHEADS = 2;
@@ -32,21 +31,20 @@ public class AppController {
     private final int STABILIZERS = 5;
 
     public AppController() throws DataException{
-        weaponMgr = new WeaponManager();
-        partMgr = new PartManager();
+        weaponPartMgr = new WeaponPartManager();
         shipMgr = new ShipManager();
-        playerMgr = new PlayerManager(shipMgr, partMgr, weaponMgr);
+        playerMgr = new PlayerManager(shipMgr, weaponPartMgr);
         shipList = shipMgr.getAll();
-        cannonList = weaponMgr.getWeaponList(CANNONS);
-        subcannonList = weaponMgr.getWeaponList(SUBCANNONS);
-        missileList = weaponMgr.getWeaponList(MISSILES);
-        meleeList = weaponMgr.getWeaponList(MELEES);
+        cannonList = weaponPartMgr.getList(CANNONS);
+        subcannonList = weaponPartMgr.getList(SUBCANNONS);
+        missileList = weaponPartMgr.getList(MISSILES);
+        meleeList = weaponPartMgr.getList(MELEES);
 
-        engineList = partMgr.getPartList(ENGINES);
-        figureheadList = partMgr.getPartList(FIGUREHEADS);
-        sailList = partMgr.getPartList(SAILS);
-        hullList = partMgr.getPartList(HULLS);
-        stabilizerList = partMgr.getPartList(STABILIZERS);
+        engineList = weaponPartMgr.getList(ENGINES);
+        figureheadList = weaponPartMgr.getList(FIGUREHEADS);
+        sailList = weaponPartMgr.getList(SAILS);
+        hullList = weaponPartMgr.getList(HULLS);
+        stabilizerList = weaponPartMgr.getList(STABILIZERS);
         
     }
 
@@ -128,7 +126,7 @@ public class AppController {
         return playerLoggedIn;
     }
 
-    public ArrayList<Weapon> getWeaponList(int weaponClass){
+    public ArrayList<WeaponPart> getWeaponList(int weaponClass){
         switch(weaponClass){
             case CANNONS:
                 return cannonList;
@@ -142,7 +140,7 @@ public class AppController {
         return cannonList;
     }
 
-     public ArrayList<Part> getPartList(int partClass){
+     public ArrayList<WeaponPart> getPartList(int partClass){
         switch(partClass){
             case ENGINES :
                 return engineList;
@@ -158,7 +156,7 @@ public class AppController {
         return engineList;
     }
 
-    public ArrayList<String> buy(Weapon w) throws DataException{
+    public ArrayList<String> buy(WeaponPart w) throws DataException{
         try {
             ArrayList<String> errors = validateCanBuy(w);
             if (errors.size() == 0){
@@ -187,7 +185,7 @@ public class AppController {
         }
     }
 
-    public ArrayList<String> validateCanBuy(Weapon w) {
+    public ArrayList<String> validateCanBuy(WeaponPart w) {
         //compare Level Required,Gold,Wood,Ore,Plasma Rock to buy weapon
         
         ArrayList<String> errors = new ArrayList<String>();
