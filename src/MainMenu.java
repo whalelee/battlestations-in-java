@@ -352,6 +352,7 @@ public class MainMenu{
             if(!this.p.getName().equals(p.getName())){
                 System.out.print(counter + ". ");
                 System.out.print(p.getName());
+                System.out.print(" [" + p.getLevel() + "] - ");
                 System.out.println();
                 counter++;
 
