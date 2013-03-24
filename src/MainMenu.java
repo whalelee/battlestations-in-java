@@ -338,7 +338,7 @@ public class MainMenu{
             System.out.println();
             System.out.println("== BattleStations :: PVP ==");
             showPlayerList();
-            System.out.print("Return to [M]ain | Enter weapon/part > ");
+            
             choice = sc.nextLine().toUpperCase().trim();
             
         } while (!validChoice);
@@ -353,12 +353,16 @@ public class MainMenu{
                 System.out.print(counter + ". ");
                 System.out.print(p.getName());
                 System.out.print(" [" + p.getLevel() + "] - ");
+                System.out.print(p.getStatus());
                 System.out.println();
                 counter++;
 
             }
             
         }
+
+        System.out.print("Return to [M]ain | Attack (1 - " +(counter-1)+") > ");
+
 
 
     }

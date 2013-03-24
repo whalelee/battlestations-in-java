@@ -154,6 +154,16 @@ public class Player{
 
 	}
 
+	public String getStatus(){
+		int totalHP = this.getTotalHP();
+		int currentHP = this.getCurrentHP();
+		if (totalHP == currentHP){
+			return "Perfect";
+		}
+		return "Damaged";
+
+	}
+
 	public int getSpeed(){
 		Ship s = this.hangar.getShip();
 		int shipSpeed = s.getSpeed();
