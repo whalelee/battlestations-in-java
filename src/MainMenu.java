@@ -346,12 +346,17 @@ public class MainMenu{
 
     public void showPlayerList(){
         ArrayList<Player> pList = appCtrl.getPlayerList();
-
+        int counter = 1;
         for(int i = 0; i < pList.size(); i++){
             Player p = pList.get(i);
-            System.out.print(i+1 + ". ");
-            System.out.print(p.getName());
-            System.out.println();
+            if(!this.p.getName().equals(p.getName())){
+                System.out.print(counter + ". ");
+                System.out.print(p.getName());
+                System.out.println();
+                counter++;
+
+            }
+            
         }
 
 
