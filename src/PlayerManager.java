@@ -122,6 +122,28 @@ public class PlayerManager {
                 Ship s = this.shipMgr.getShipByName(shipName);
                 //create a hangar with ship gotten
                 Hangar h = new Hangar(s);
+
+                String hangarFigurehead = data[23];
+                System.out.println(hangarFigurehead);
+                WeaponPart figurehead = this.weaponPartMgr.getPartByTypeAndName(FIGUREHEADS, hangarFigurehead);
+                    if (figurehead!=null)
+                        h.setFigurehead(figurehead);
+                
+
+                // String hangarFigurehead = data[23];
+                // WeaponPart figurehead = this.weaponPartMgr.getPartByTypeAndName(FIGUREHEADS, hangarFigurehead);
+
+                // String hangarFigurehead = data[24];
+                // WeaponPart figurehead = this.weaponPartMgr.getPartByTypeAndName(FIGUREHEADS, hangarFigurehead);
+
+                // String hangarFigurehead = data[25];
+                // WeaponPart figurehead = this.weaponPartMgr.getPartByTypeAndName(FIGUREHEADS, hangarFigurehead);
+
+                // String hangarFigurehead = data[26];
+                // WeaponPart figurehead = this.weaponPartMgr.getPartByTypeAndName(FIGUREHEADS, hangarFigurehead);
+
+                // String hangarFigurehead = data[27];
+                // WeaponPart figurehead = this.weaponPartMgr.getPartByTypeAndName(FIGUREHEADS, hangarFigurehead);
                 
                 Player p = new Player(username, password, playerType.charAt(0));
                 p.setGold(gold);
@@ -318,6 +340,10 @@ public class PlayerManager {
                 fileOut.print(",");
                 fileOut.print(c.getStorage().getWeaponListToString());
                 fileOut.print(",");
+
+                System.out.println(c.getHangar().getFigurehead().getName());
+                // fileOut.print(c.getHangar().getFigurehead().getName());
+                // fileOut.print(",");
 
 
                 if (i<totalPlayer - 1){

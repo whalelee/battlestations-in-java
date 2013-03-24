@@ -1,6 +1,10 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+
 public class WeaponPart{
 
-	private String name;
+	private String name =" ";
 	private int weight;
 	private int levelReq;
 	private int gold;
@@ -8,6 +12,10 @@ public class WeaponPart{
 	private int ore;
 	private int prock;
 	private String port;
+
+	public WeaponPart(){
+		this.name = " ";
+	}
 
 	public String getName(){
 		return name;
@@ -106,5 +114,7 @@ public class WeaponPart{
 	public void setMaxDamage(int maxDamage){                                                      
 	}
 
-
+	public String toString(){
+		return "L" + this.levelReq + " - " + this.name;
+	}
 }

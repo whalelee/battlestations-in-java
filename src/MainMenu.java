@@ -59,8 +59,8 @@ public class MainMenu{
                         processViewStatistics();
                         break;
                     case 2:
-                        //processMyHangar();
-                        processStorage();
+                        processMyHangar();
+                        //processStorage();
                         break;
                     case 3:
                         processShopping();
@@ -113,6 +113,39 @@ public class MainMenu{
     }
 
     public void processMyHangar(){
+       String choice = "";
+        boolean validChoice = false;
+
+        do{
+            System.out.println();
+            System.out.println("== BattleStations :: My Hangar ==");
+            System.out.println("");
+            System.out.println();
+            System.out.println("Parts: ");
+            System.out.println("[F]igurehead: \t" + p.getHangar().getFigurehead().toString());
+            //System.out.println("[S]ail: \t" + p.getHangar().getFigurehead().toString());
+
+
+
+            System.out.print("Return to [M]ain | [E]quip | [U]nequip | [R]epair");
+            choice = sc.nextLine().trim().toUpperCase();
+
+            if (choice.equals("M")){
+                validChoice = true;
+                readOption();
+            } else if (choice.equals("B")){
+                validChoice = true;
+                processMyHangar();
+            } else if (validIndices.contains(choice)){
+                validChoice = true;
+                processEquip(choice);
+            }else{
+                System.out.println("Invalid Input!");
+            }
+
+        }while(!validChoice);
+
+            
        /* 
         String choice = "";
         boolean validChoice = false;
