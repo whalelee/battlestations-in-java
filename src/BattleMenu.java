@@ -25,7 +25,17 @@ public class BattleMenu{
 		System.out.print(targetName + "'s HP: ");
 		System.out.println(target.getCurrentHP() + " / " + target.getTotalHP());
 
-		appCtrl.startBattle(target);
+		ArrayList<ArrayList<Attack>> battlePlayers = appCtrl.startBattle(target);
+
+		ArrayList<Attack> attackers = battlePlayers.get(0);
+		for (Attack ap : attackers){
+			System.out.println(ap.toString());
+		}
+
+		ArrayList<Attack> defenders = battlePlayers.get(1);
+		for (Attack dp : defenders){
+			System.out.println(dp.toString());
+		}
 		//user what weapon to fight at what distance & cost how much damage
 		//System.out.println(myName + " attacks with xxx at " + m (xxx damage)");
 	}

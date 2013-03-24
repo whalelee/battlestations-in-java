@@ -153,6 +153,7 @@ public class PlayerManager {
                 weapons = storageWeapon.split(":");
                 for(String wea : weapons) {
                     WeaponPart weapon = this.weaponPartMgr.getWeaponByName(wea);
+                    System.out.println("!@!$++" + wea);
                     if (weapon!=null)
                         h.addWeapon(weapon);
                 }
@@ -173,7 +174,6 @@ public class PlayerManager {
                 p.setCurrentHP(currentHP);
                 p.setExp(exp);
                 p.setStorage(storage);
-
 
                 playerList.add(p);
 
