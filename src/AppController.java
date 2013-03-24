@@ -265,4 +265,9 @@ public class AppController {
 
     }
 
+    public ArrayList<Player> getPlayerList(){
+        return playerMgr.getAll();
+
+    }
+
 } // AppController

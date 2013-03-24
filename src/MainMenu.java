@@ -331,9 +331,31 @@ public class MainMenu{
     }
     
     public void processPVP(){
+        String choice = null;
+        boolean validChoice = false;
 
+        do{
+            System.out.println();
+            System.out.println("== BattleStations :: PVP ==");
+            showPlayerList();
+            System.out.print("Return to [M]ain | Enter weapon/part > ");
+            choice = sc.nextLine().toUpperCase().trim();
+            
+        } while (!validChoice);
     }
 
+    public void showPlayerList(){
+        ArrayList<Player> pList = appCtrl.getPlayerList();
+
+        for(int i = 0; i < pList.size(); i++){
+            Player p = pList.get(i);
+            System.out.print(i+1 + ". ");
+            System.out.print(p.getName());
+            System.out.println();
+        }
+
+
+    }
     public void processLogout(){
         appCtrl.logOutPlayer();
         p = null;
