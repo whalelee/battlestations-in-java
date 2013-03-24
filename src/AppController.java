@@ -270,4 +270,25 @@ public class AppController {
 
     }
 
+    public ArrayList<Player> getTargets(){
+        ArrayList<Player> pList = this.getPlayerList();
+        ArrayList<Player> targetList = new ArrayList<Player>();
+
+        int loggedInPlayerLevel = this.playerLoggedIn.getLevel();
+        String loggedInPlayerName = this.playerLoggedIn.getName();
+
+        for(int i = 0; i < pList.size(); i++){
+            Player p = pList.get(i);
+            boolean notLoggedInPlayer = !loggedInPlayerName.equals(p.getName());
+            int difference = Math.abs(loggedInPlayerLevel - p.getLevel());
+            boolean within5Levels = (difference >= 0 && difference <= 5);
+            
+            if(notLoggedInPlayer && within5Levels){
+                targetList.add(p); 
+            }
+            
+        }
+        return targetList;
+    }
+
 } // AppController

@@ -337,15 +337,42 @@ public class MainMenu{
         do{
             System.out.println();
             System.out.println("== BattleStations :: PVP ==");
-            showPlayerList();
-            
-            choice = sc.nextLine().toUpperCase().trim();
-            
+            ArrayList<Player> targets = showPlayerList();
+            try {
+                choice = sc.nextLine().trim().toUpperCase();
+                System.out.println();
+                
+                if(choice.equals("M")){
+                    validChoice = true;
+                    this.readOption();
+                } else { 
+                    try{
+                        int input = Integer.parseInt(choice);
+
+                        if (input >= 1 && input <= targets.size()){
+                            validChoice = true;
+                            BattleMenu pvp = new BattleMenu(appCtrl);
+                            pvp.fight(input, targets);
+                        } else{
+                            System.out.println("Invalid Input!!!");
+                        }
+                    }catch (NumberFormatException e){
+                        System.out.println("Invalid Input!!!");
+                    } 
+
+                }
+
+            } catch (InputMismatchException e) {
+                // display error message
+                System.out.println("Please enter a valid option!");
+                sc.nextLine();
+            }
+
         } while (!validChoice);
     }
 
-    public void showPlayerList(){
-        ArrayList<Player> pList = appCtrl.getPlayerList();
+    public ArrayList<Player> showPlayerList(){
+        ArrayList<Player> pList = appCtrl.getTargets();
         int counter = 1;
         for(int i = 0; i < pList.size(); i++){
             Player p = pList.get(i);
@@ -362,8 +389,7 @@ public class MainMenu{
         }
 
         System.out.print("Return to [M]ain | Attack (1 - " +(counter-1)+") > ");
-
-
+        return pList;
 
     }
     public void processLogout(){
