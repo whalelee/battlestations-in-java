@@ -46,6 +46,7 @@ public class ShipManager{
                 //set data to the Ship object
                 Ship p = new Ship();
                 p.setName(shipName);
+                p.setSpeed(speed);
                 p.setHP(hp);
                 p.setSlots(slots);
                 p.setCapacity(capacity);

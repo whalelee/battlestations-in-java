@@ -125,7 +125,10 @@ public class MainMenu{
             System.out.println("[F]igurehead: \t" + p.getHangar().getFigurehead().toString());
             System.out.println("[S]ail: \t" + p.getHangar().getSail().toString());
             System.out.println("S[t]abilizer: \t" + p.getHangar().getStabilizer().toString());
+            System.out.println("[H]ull: \t" + p.getHangar().getHull().toString());
+            System.out.println("[E]ngine: \t" + p.getHangar().getEngine().toString());
             System.out.println();
+            System.out.println("Weapons: ");
             ArrayList<WeaponPart> weaponList = p.getHangar().getWeaponList();
 
             if (weaponList!=null){
@@ -142,6 +145,11 @@ public class MainMenu{
                 
                 }
             }
+
+            System.out.println();
+            System.out.println("Capacity : ");
+            System.out.println("Speed : ");
+            System.out.println("HP: ");
 
             System.out.print("Return to [M]ain | [E]quip | [U]nequip | [R]epair");
             choice = sc.nextLine().trim().toUpperCase();

@@ -167,7 +167,9 @@ public class Player{
 	public int getSpeed(){
 		Ship s = this.hangar.getShip();
 		int shipSpeed = s.getSpeed();
+		System.out.println("player.java Speed" + shipSpeed);
 		double speedInDouble =  shipSpeed + navigation;
+		System.out.println("player.java Speed" + speedInDouble);
 		return (int)speedInDouble;
 
 	}

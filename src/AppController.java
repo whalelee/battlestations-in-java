@@ -300,12 +300,25 @@ public class AppController {
 
     }
 
-    public void startBattle(Player target){
+    public int startBattle(Player target){
         battleMgr.assignPlayer(target,playerLoggedIn);
         int timeTaken = battleMgr.getTimeTakenForBattle1();
         int defenderPosition = battleMgr.getPositionForBattle1("defender", timeTaken);
         int attackerPosition = battleMgr.getPositionForBattle1("attacker", timeTaken);
+        int rangeForBattle1 = defenderPosition-attackerPosition;   
+        ArrayList<WeaponPart> attackerWeapon = getWeaponInRange(playerLoggedIn, rangeForBattle1); //attacker is playerLoggedIn
+        return rangeForBattle1;
+
     }
 
+    public ArrayList<WeaponPart> getWeaponInRange(Player target, int range){
+        ArrayList<WeaponPart> myList = target.getHangar().getWeaponList(); 
+        
+        for(WeaponPart wp: myList){
+            WeaponPart w = weaponPartMgr.getWeaponByName(wp.getName());
+            System.out.println(w.getRange());
+        }
 
+        return myList;
+    }
 } // AppController

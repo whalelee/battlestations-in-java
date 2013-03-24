@@ -120,6 +120,7 @@ public class PlayerManager {
                 }
 
                 Ship s = this.shipMgr.getShipByName(shipName);
+                System.out.println("PlayerManager.java" + s.getSpeed());
                 //create a hangar with ship gotten
                 Hangar h = new Hangar(s);
 
