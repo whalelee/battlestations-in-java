@@ -300,74 +300,11 @@ public class AppController {
 
     }
 
-    public ArrayList<ArrayList<Attack>> startBattle(Player target){
-        battleMgr.assignPlayer(target,playerLoggedIn);
-        battleMgr.getMultiplier(); // this calculates multiplier already;
-
-
-        int timeTaken = battleMgr.getTimeTakenForBattle1();
-        int defenderPosition = battleMgr.getPositionForBattle1("defender", timeTaken);
-        int attackerPosition = battleMgr.getPositionForBattle1("attacker", timeTaken);
-        int rangeForBattle1 = defenderPosition-attackerPosition; 
-        ArrayList<WeaponPart> attackerWeapons = getWeaponInRange(playerLoggedIn, rangeForBattle1); //attacker is playerLoggedIn
-        ArrayList<WeaponPart> defenderWeapons = getWeaponInRange(target, rangeForBattle1); //defender is target
-        Random r = new Random();
-        ArrayList<Attack> attackerList = new ArrayList<Attack>();
-        // arraylist of attack called attackerList
-        // for loop attackerweapons
-        // each attackerweapon.getMaxDamage
-        // each attackerweapon.getMinDamage
-        int attackerTotalDamage = 0;
-        for (WeaponPart weapon: attackerWeapons){
-            int maxDamage = weapon.getMaxDamage();
-            int minDamage = weapon.getMinDamage();
-            int damageRange = maxDamage - minDamage;
-            int randomDamage = r.nextInt(damageRange+1);
-            int actualDamage = minDamage+randomDamage;
-            Attack a = new Attack(playerLoggedIn.getName(), weapon.getName(), rangeForBattle1, actualDamage);
-            attackerList.add(a);
-            attackerTotalDamage += actualDamage;
-
-        }
-        int attackerCombatXP = battleMgr.getCombatXP(attackerTotalDamage, "attacker");
-        // do the same for defender
-        ArrayList<Attack> defenderList = new ArrayList<Attack>();
-        int defenderTotalDamage = 0;
-        for (WeaponPart weapon: defenderWeapons){
-            int maxDamage = weapon.getMaxDamage();
-            int minDamage = weapon.getMinDamage();
-            int damageRange = maxDamage - minDamage;
-            int randomDamage = r.nextInt(damageRange+1);
-            int actualDamage = minDamage+randomDamage;
-            Attack d = new Attack(target.getName(), weapon.getName(), rangeForBattle1, actualDamage);
-            defenderList.add(d);
-            defenderTotalDamage += actualDamage;
-
-        }
-        int defenderCombatXP = battleMgr.getCombatXP(defenderTotalDamage, "defender");
-        ArrayList<ArrayList<Attack>> result = new ArrayList<ArrayList<Attack>>();
-        result.add(attackerList);
-        result.add(defenderList);
-        
-        return result;
-
+    public Battle startBattle(Player target){
+        battleMgr.assignPlayer(playerLoggedIn, target);
+        return battleMgr.startBattle(); 
     }
 
-    public ArrayList<WeaponPart> getWeaponInRange(Player target, int range){
-        ArrayList<WeaponPart> myList = target.getHangar().getWeaponList(); 
-        // need a weaponpart resultList
-        ArrayList<WeaponPart> results = new  ArrayList<WeaponPart>();
-        System.out.println("opponent:*** " +target.getName());
-        for(WeaponPart wp: myList){
-            WeaponPart w = weaponPartMgr.getWeaponByName(wp.getName());
-            // check if w.getRange is within the range
-            if (w.getRange() <= range){
-                results.add(w);
-                System.out.println("weapon:*** " +w.getName());
-            }
-            // if it is , add w to result list
-        }
 
-        return results;// return resultList
-    }
+
 } // AppController

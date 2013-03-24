@@ -120,7 +120,7 @@ public class PlayerManager {
                 }
 
                 Ship s = this.shipMgr.getShipByName(shipName);
-                System.out.println("PlayerManager.java" + s.getSpeed());
+                
                 //create a hangar with ship gotten
                 Hangar h = new Hangar(s);
 
@@ -153,7 +153,7 @@ public class PlayerManager {
                 weapons = storageWeapon.split(":");
                 for(String wea : weapons) {
                     WeaponPart weapon = this.weaponPartMgr.getWeaponByName(wea);
-                    System.out.println("!@!$++" + wea);
+
                     if (weapon!=null)
                         h.addWeapon(weapon);
                 }
