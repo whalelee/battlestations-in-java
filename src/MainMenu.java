@@ -123,9 +123,25 @@ public class MainMenu{
             System.out.println();
             System.out.println("Parts: ");
             System.out.println("[F]igurehead: \t" + p.getHangar().getFigurehead().toString());
-            //System.out.println("[S]ail: \t" + p.getHangar().getFigurehead().toString());
+            System.out.println("[S]ail: \t" + p.getHangar().getSail().toString());
+            System.out.println("S[t]abilizer: \t" + p.getHangar().getStabilizer().toString());
+            System.out.println();
+            ArrayList<WeaponPart> weaponList = p.getHangar().getWeaponList();
 
+            if (weaponList!=null){
+                if (weaponList.size() == 0){
+                    System.out.println("NIL");
+                }
+                for (int i = 1; i <=weaponList.size(); i++){
+                    WeaponPart w = weaponList.get(i -1);
+                    int levelReq = w.getLevelReq();
+                    String partName = w.getName();
+                    String index = "W" + i;
 
+                    System.out.println(String.format("[%1s] L%2d - %3s", index, levelReq, partName));
+                
+                }
+            }
 
             System.out.print("Return to [M]ain | [E]quip | [U]nequip | [R]epair");
             choice = sc.nextLine().trim().toUpperCase();
@@ -144,52 +160,6 @@ public class MainMenu{
             }
 
         }while(!validChoice);
-
-            
-       /* 
-        String choice = "";
-        boolean validChoice = false;
-        do{
-            System.out.println();
-            System.out.println("== BattleStations :: My Hangar ==");
-            System.out.println("");
-            System.out.println();
-            System.out.println("Parts");
-            System.out.println("Weapons:");
-            System.out.println();
-            System.out.println("[W1] L40 - Impact Cannon");
-            System.out.println("[W2] L40 - Impact Cannon");
-            System.out.println("[W3] L35 - Aerial Nines");
-            System.out.println("[W4] L45 - Hand of Justice");
-            System.out.println();
-            System.out.println("Capacity:" + "");
-            System.out.println("Speed:" + "");
-            System.out.println("Capacity:" + "");
-            System.out.print("Return to [M]ain | [E]quip | [U]nequip | [R]epair");
-            choice = sc.nextLine().trim().toUpperCase();
-            
-            switch (choice){
-                case "M":
-                    validChoice = true;
-                    readOption();
-                    break;
-                case "E":
-                    validChoice = true;
-                    processStorage();
-                    break;
-                case "U":
-                    validChoice = true;
-                    processUnequip();
-                    break;
-                case "R":
-                    validChoice = true;
-                    processRepair();
-                    break;
-            }
-
-        }while(!validChoice);
-        */
-
     
     }
 

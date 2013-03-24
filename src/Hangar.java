@@ -16,11 +16,21 @@ public class Hangar {
 	public Hangar() {
 		this.ship = new Ship();
 		this.figurehead = new WeaponPart();
+		this.sail = new WeaponPart();
+		this.stabilizer = new WeaponPart();
+		this.hull = new WeaponPart();
+		this.engine = new WeaponPart(); 
+		weaponList = new ArrayList<WeaponPart>();
 	}
 
 	public Hangar(Ship ship) {
 		this.ship = ship;
 		this.figurehead = new WeaponPart();
+		this.sail = new WeaponPart();
+		this.stabilizer = new WeaponPart();
+		this.hull = new WeaponPart();
+		this.engine = new WeaponPart(); 
+		weaponList = new ArrayList<WeaponPart>();
 	}
 
 	public Ship getShip(){
@@ -88,5 +98,19 @@ public class Hangar {
 
 	public void removeWeapon(int index){
 		weaponList.remove(index);
+	}
+
+	public String getWeaponListToString(){
+		
+		if (weaponList.size() ==0){
+			return " ";
+		}
+		String result ="";
+		for(WeaponPart p : weaponList){
+			result += p.getName(); 
+			result +=":";
+		}
+		return result.substring(0, result.length()-1); 
+		// return the whole string except for the last character
 	}
 }

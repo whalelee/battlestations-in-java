@@ -115,6 +115,9 @@ public class WeaponPart{
 	}
 
 	public String toString(){
+		if (this.name.equals(" ")){
+			return "Nil";
+		}
 		return "L" + this.levelReq + " - " + this.name;
 	}
 }
