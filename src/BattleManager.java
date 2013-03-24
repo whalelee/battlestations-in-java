@@ -8,6 +8,9 @@ public class BattleManager{
 	private ShipManager shipMgr;
 	private Player defender;
 	private Player attacker;
+	private int levelDifference;
+	private double attackerMultiplier;
+	private double defenderMultiplier;
 
 	public BattleManager(PlayerManager playerMgr, ShipManager shipMgr){
 		this.playerMgr = playerMgr;
@@ -43,4 +46,58 @@ public class BattleManager{
 		}
 		return 0;
 	}
+
+	public int getCombatXP(int totalDamage, String type) {
+		int level =0;
+		double multiplier=0;
+		switch(type){
+			case "attacker":
+				multiplier = attackerMultiplier;
+				level = attacker.getLevel(); 
+				break;
+			case "defender":
+				multiplier = defenderMultiplier;
+				level = defender.getLevel(); 
+				break;
+		}
+
+		double combatXP = (totalDamage / 300) * level * 5 * multiplier;
+		return (int)combatXP;
+    }
+
+    public void getMultiplier(){
+    	int attackerLevel = attacker.getLevel();
+    	int defenderLevel = defender.getLevel();
+    	this.levelDifference = Math.abs( attackerLevel - defenderLevel);
+    	boolean attackerIsGreater = (attackerLevel > defenderLevel);
+
+		switch(this.levelDifference) {
+			case 5:
+				if (attackerIsGreater) {
+					attackerMultiplier = 1.3;
+				} else {
+					attackerMultiplier = 0.7;
+				}
+				break;
+			case 4:
+				if (attackerIsGreater) {
+					attackerMultiplier = 1.2;
+				} else {
+					attackerMultiplier = 0.8;
+				}
+				break;
+			case 3:
+				if (attackerIsGreater) {
+					attackerMultiplier = 1.1;
+				} else {
+					attackerMultiplier = 0.9;
+				}
+				break;
+			default:
+				attackerMultiplier = 1.0;
+		}
+
+    	defenderMultiplier = 2.0 - attackerMultiplier;
+    }
+
 }
