@@ -14,6 +14,7 @@ public class BattleMenu{
 	}
 
 	public void fight(int input, ArrayList<Player> targets){
+		appCtrl.deductAPForPVP();
 		Player me = appCtrl.getPlayerLoggedIn();
 		String myName = me.getName();
 		Player target = targets.get(input-1);

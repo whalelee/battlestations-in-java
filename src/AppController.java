@@ -291,4 +291,8 @@ public class AppController {
         return targetList;
     }
 
+    public void deductAPForPVP(){
+        playerLoggedIn.increaseAP(-8);
+    }
+
 } // AppController
