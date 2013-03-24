@@ -4,6 +4,7 @@ public class AppController {
     private PlayerManager playerMgr;
     private ShipManager shipMgr;
     private WeaponPartManager weaponPartMgr;
+    private BattleManager battleMgr;
 
     private Player playerLoggedIn;
     
@@ -34,6 +35,8 @@ public class AppController {
         weaponPartMgr = new WeaponPartManager();
         shipMgr = new ShipManager();
         playerMgr = new PlayerManager(shipMgr, weaponPartMgr);
+        battleMgr = new BattleManager(playerMgr, shipMgr);
+
         shipList = shipMgr.getAll();
         cannonList = weaponPartMgr.getList(CANNONS);
         subcannonList = weaponPartMgr.getList(SUBCANNONS);
@@ -294,7 +297,15 @@ public class AppController {
     public void deductAPForPVP() throws DataException{
         playerLoggedIn.increaseAP(-8);
         playerMgr.updatePlayer(playerLoggedIn);
-        
+
     }
+
+    public void startBattle(Player target){
+        battleMgr.assignPlayer(target,playerLoggedIn);
+        int timeTaken = battleMgr.getTimeTakenForBattle1();
+        int defenderPosition = battleMgr.getPositionForBattle1("defender", timeTaken);
+        int attackerPosition = battleMgr.getPositionForBattle1("attacker", timeTaken);
+    }
+
 
 } // AppController
