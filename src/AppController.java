@@ -291,8 +291,10 @@ public class AppController {
         return targetList;
     }
 
-    public void deductAPForPVP(){
+    public void deductAPForPVP() throws DataException{
         playerLoggedIn.increaseAP(-8);
+        playerMgr.updatePlayer(playerLoggedIn);
+        
     }
 
 } // AppController

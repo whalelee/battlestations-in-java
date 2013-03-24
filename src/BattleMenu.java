@@ -13,7 +13,7 @@ public class BattleMenu{
 		sc = new Scanner(System.in);
 	}
 
-	public void fight(int input, ArrayList<Player> targets){
+	public void fight(int input, ArrayList<Player> targets) throws DataException{
 		appCtrl.deductAPForPVP();
 		Player me = appCtrl.getPlayerLoggedIn();
 		String myName = me.getName();

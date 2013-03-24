@@ -353,7 +353,7 @@ public class MainMenu{
                             validChoice = true;
                             BattleMenu pvp = new BattleMenu(appCtrl);
                             pvp.fight(input, targets);
-                            
+
                         } else{
                             System.out.println("Invalid Input!!!");
                         }
@@ -367,6 +367,8 @@ public class MainMenu{
                 // display error message
                 System.out.println("Please enter a valid option!");
                 sc.nextLine();
+            } catch (DataException e){
+                System.out.println(e.getMessage());
             }
 
         } while (!validChoice);
